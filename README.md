@@ -30,6 +30,9 @@
 
 * 자율 학습 플랫폼
   * 자율적으로 문제를 만들고 학습하며 하나의 주제를 정복!
+  * 객관식, 주관식, 서술형 문제를 스스로 출제!
+* 모의고사
+  * 연습에서 실전연습으로! 다른 사람들의 문제들을 하나의 문제집으로!
 
 ---
 
@@ -53,7 +56,11 @@
 
 ## :open_file_folder: 업데이트 내역
 
-* 
+* SOLAFY 1.0.0
+  * Mybatis를 기반으로 기본 기능을 구현
+  * [SOLAFY_1.0.0](https://github.com/upswp/SOLAFY_1.0.0.git)
+* SOLAFY 2.0.0
+  * JPA를 이용한 심화 기능 구현
 
 ---
 
@@ -61,7 +68,7 @@
 
 | 구분                    | 이름          | 링크                                                         |
 | ----------------------- | ------------- | ------------------------------------------------------------ |
-| **[문서]** 이슈관리     | Jira Software | [SOLAFY_doc]()                                               |
+| **[문서]** 이슈관리     | Jira Software | [SOLAFY_Jira](https://solafy-ssafy.atlassian.net/secure/BrowseProjects.jspa) |
 | **[설계]** 와이어프레임 | Figma         | [SOLAFY_figma](https://www.figma.com/file/lRb9GPxT7EVxigi8mR14za/SOLAFY) |
-| **[설계]** RestAPI      |               | [SOLAFY_swagger]                                             |
-| **[설계]**문서정리      | Confluence    |                                                              |
+| **[설계]** RestAPI      | Swagger       | [SOLAFY_swagger]                                             |
+| **[설계]**문서정리      | Confluence    | [SOLAFY_docs](https://solafy-ssafy.atlassian.net/wiki/home)  |
