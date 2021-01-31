@@ -6,15 +6,28 @@
 
 ---
 
-## 👯‍️About PLOVER TEAM
+## 👯‍️About SOLAFY TEAM
 
-|   Name   | 윤기현                                       | 이아영                                                       | 박상우                                                       | 서범석                                                       | 이주희                                   |
-| :------: | -------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ---------------------------------------- |
-| Profile  |                                              | <img src="https://user-images.githubusercontent.com/70404643/105169123-6a18dd80-5b5e-11eb-9e91-41fe504efa9c.jpg" alt="KakaoTalk_20210120_201542573" style="zoom:80%;" /> | <img src="https://user-images.githubusercontent.com/70404643/105169356-c4b23980-5b5e-11eb-915a-f707a027a24e.jpg" alt="KakaoTalk_20210120_202826999" style="zoom:80%;" /> | <img src="https://user-images.githubusercontent.com/70404643/105167356-f675d100-5b5b-11eb-848e-26c5e3ad92a9.jpg" alt="KakaoTalk_20210120_200803544_01" style="zoom:80%;" /> |                                          |
-| Position | Chef                                         | Acrobat                                                      | Captain                                                      | Writer                                                       | Chief mate                               |
-|   Git    | [@KihyeonYun](https://github.com/KiHyeonYun) | [@LeeA0](https://github.com/LeeA0)                           | [@upswp](https://github.com/upswp)                           | [@callipenguin](https://github.com/callipenguin)             | [@juhee](Stephen)                        |
-|   Blog   | [Dev Yun](https://dev-yun.tistory.com/)      | [LeeA0의 공부 일기](https://leea-dev.tistory.com/)           | [HeySangwoo](https://upswp.github.io/)                       | [캘리펭귄의 영역](https://callipenguin.tistory.com/)         | [devG](https://developer-g.tistory.com/) |
-| NickName |                                              |                                                              | **Owen**                                                     | **Stephen**                                                  | **G**                                    |
+|   Name   | 윤기현                                                       | 이아영                                                       | 박상우                                                       | 서범석                                                       | 이주희                                                       | 노천명                                                       |
+| :------: | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| Profile  | <img src="https://user-images.githubusercontent.com/70404643/106379731-5c324a80-63f1-11eb-8bfa-01db798ea00a.jpg" alt="KakaoTalk_20210123_153318915" style="zoom:80%;" /> | <img src="https://user-images.githubusercontent.com/70404643/105169123-6a18dd80-5b5e-11eb-9e91-41fe504efa9c.jpg" alt="KakaoTalk_20210120_201542573" style="zoom:80%;" /> | <img src="https://user-images.githubusercontent.com/70404643/105169356-c4b23980-5b5e-11eb-915a-f707a027a24e.jpg" alt="KakaoTalk_20210120_202826999" style="zoom:80%;" /> | <img src="https://user-images.githubusercontent.com/70404643/105167356-f675d100-5b5b-11eb-848e-26c5e3ad92a9.jpg" alt="KakaoTalk_20210120_200803544_01" style="zoom:80%;" /> | <img src="https://user-images.githubusercontent.com/70404643/106379668-db734e80-63f0-11eb-9fbc-638de8ae9461.jpg" alt="KakaoTalk_20210123_122038743" style="zoom:80%;" /> | <img src="https://user-images.githubusercontent.com/70404643/106379734-65bbb280-63f1-11eb-86b7-35a10f7c4036.jpg" alt="KakaoTalk_20210131_181642502" style="zoom:80%;" /> |
+| Position | Chef                                                         | Acrobat                                                      | Captain                                                      | Writer                                                       | Chief mate                                                   | Shipbuilder                                                  |
+|   Git    | [@KihyeonYun](https://github.com/KiHyeonYun)                 | [@LeeA0](https://github.com/LeeA0)                           | [@upswp](https://github.com/upswp)                           | [@callipenguin](https://github.com/callipenguin)             | [@juhee](Stephen)                                            | [@shcjsaud3613](https://github.com/shcjsaud3613)             |
+|   Blog   | [Dev Yun](https://dev-yun.tistory.com/)                      | [LeeA0의 공부 일기](https://leea-dev.tistory.com/)           | [HeySangwoo](https://upswp.github.io/)                       | [캘리펭귄의 영역](https://callipenguin.tistory.com/)         | [devG](https://developer-g.tistory.com/)                     | [HeyGP](https://blog.naver.com/shcjsaud3613)                 |
+| NickName | **Bentley**                                                  | **Lani**                                                     | **Evan**                                                     | **Stephen**                                                  | **G**                                                        | **GP**                                                       |
+
+### Team Communication Rule ✨
+
+🧷 [SOLAFY Business Rules](https://github.com/upswp/SOLAFY_2.0.0/wiki/SOLAFY-Business-Rules)
+
+- 팀원간의 소통은 존댓말로!
+  사적인 자리에서는 친분을! 하지만 프로젝트는 우리 모두의 존중을 위해 존댓말로!
+
+- 프로젝트 이슈 관리는 스스로!
+  팀장과 CTO를 중심으로 프로젝트 이슈를 기획하고 스스로 관리하며 이슈처리를 학습!
+
+- 모든 대화는 한곳에서!
+  공적인 대화는 front와 back개발자들이 모두 알 수 있도록! 흐름은 모두가 알고가자!
 
 ---
 
@@ -72,3 +85,5 @@
 | **[설계]** 와이어프레임 | Figma         | [SOLAFY_figma](https://www.figma.com/file/lRb9GPxT7EVxigi8mR14za/SOLAFY) |
 | **[설계]** RestAPI      | Swagger       | [SOLAFY_swagger]                                             |
 | **[설계]**문서정리      | Confluence    | [SOLAFY_docs](https://solafy-ssafy.atlassian.net/wiki/home)  |
+| **[문서]**자료정리      | Google drive  | [SOLAFY_box](https://drive.google.com/drive/folders/14RGnhdylCWOxAc0aIBzyZqxKKoA2s59m?usp=sharing) |
+
