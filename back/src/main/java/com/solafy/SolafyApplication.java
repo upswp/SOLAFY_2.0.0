@@ -1,4 +1,4 @@
-package com.solafy.SOLAFY;
+package com.solafy;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
