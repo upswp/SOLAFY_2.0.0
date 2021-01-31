@@ -1,4 +1,4 @@
-package com.solafy.repository;
+package com.solafy.controller;
 
 import com.solafy.model.Response;
 import com.solafy.model.member.Member;
