@@ -19,6 +19,7 @@
             label="PASSWORD"
             style="width : 450px; height : 52px;"
           />
+          <!-- padding 값을 주어 변경 -->
           <div id="subform">
             <q-checkbox toggle-order="ft" label="자동로그인" color="primary" />
             <q-btn flat color="black" label="비밀번호 찾기" />
