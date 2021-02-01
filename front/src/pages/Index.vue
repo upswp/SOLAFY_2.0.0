@@ -6,7 +6,7 @@
         <img style="width : 80px; height : 80px;" src="~src/assets/logo.png" />
       </div>
       <div class="column items-center" style="height: 700px">
-        <div class="col-5">
+        <div class="col-4">
           <q-input
             filled
             label="SOLAFY ID"
@@ -19,7 +19,8 @@
             label="PASSWORD"
             style="width : 450px; height : 52px;"
           />
-          <div class="column items-right">
+          <!-- padding 값을 주어 변경 -->
+          <div id="subform">
             <q-checkbox toggle-order="ft" label="자동로그인" color="primary" />
             <q-btn flat color="black" label="비밀번호 찾기" />
           </div>
@@ -65,5 +66,8 @@
   color: black;
   align-content: center;
   background-color: white;
+}
+#subform {
+  padding-left: 235px;
 }
 </style>
