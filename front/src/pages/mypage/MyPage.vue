@@ -12,7 +12,7 @@
                 @click="link = 'profile'"
                 active-class="my-menu-link"
               >
-                <q-item-section>alice</q-item-section>
+                <q-item-section> alice </q-item-section>
               </q-item>
 
               <q-item
@@ -22,7 +22,7 @@
                 @click="link = 'notification'"
                 active-class="my-menu-link"
               >
-                <q-item-section>활동 알림</q-item-section>
+                <q-item-section> 활동 알림 </q-item-section>
               </q-item>
 
               <q-item
@@ -32,7 +32,7 @@
                 @click="link = 'myarticle'"
                 active-class="my-menu-link"
               >
-                <q-item-section>내가 쓴 글</q-item-section>
+                <q-item-section> 내가 쓴 글 </q-item-section>
               </q-item>
 
               <q-item
@@ -42,7 +42,7 @@
                 @click="link = 'bookmark'"
                 active-class="my-menu-link"
               >
-                <q-item-section>즐겨찾기</q-item-section>
+                <q-item-section> 즐겨찾기 </q-item-section>
               </q-item>
 
               <q-item
@@ -52,7 +52,7 @@
                 @click="link = 'withdrawal'"
                 active-class="my-menu-link"
               >
-                <q-item-section>탈퇴하기</q-item-section>
+                <q-item-section> 탈퇴하기 </q-item-section>
               </q-item>
             </q-list>
           </div>
@@ -67,12 +67,17 @@
 </template>
 <script>
 export default {
-  name: "MyPage",
   data() {
     return {
       link: "profile"
     };
-  }
+  },
+  watch: {
+    link: function() {
+      this.$router.push("/mypage/" + this.link);
+    }
+  },
+  methods: {}
 };
 </script>
 
