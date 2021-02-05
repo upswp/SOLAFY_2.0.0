@@ -40,6 +40,7 @@
   color: white;
   align-content: center;
   background-color: #0094ff;
+  margin-bottom: 50px;
 }
 #textInput {
   text-align: center;
