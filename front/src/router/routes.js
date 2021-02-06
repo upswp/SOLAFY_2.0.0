@@ -12,6 +12,18 @@ const routes = [
         component: () => import("pages/user/FindPassword.vue"),
       
       },
+      {
+        path: "/successsignup",
+        name: "SuccessSignup",
+        component: () => import("pages/user/SuccessSignup.vue"),
+      
+      },
+      {
+        path: "/signup",
+        name: "Signup",
+        component: () => import("pages/user/Signup.vue"),
+      
+      },
       // my page
       {
         path: "/mypage",
