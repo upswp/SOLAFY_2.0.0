@@ -40,7 +40,7 @@
 #subText {
   padding-top: 30px;
   text-align: center;
-  font-size: 13px;
+  font-size: 12px;
   padding-bottom: 60px;
   line-height: 40px;
   color: #b5b5b5;
@@ -48,7 +48,7 @@
 #loginbtn {
   width: 190px;
   height: 35px;
-  size: "13px";
+  font-size: 12px;
   color: white;
   align-content: center;
   background-color: #a5cbe7;

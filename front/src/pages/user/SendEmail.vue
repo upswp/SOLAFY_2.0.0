@@ -28,7 +28,7 @@
 #loginbtn {
   width: 190px;
   height: 35px;
-  size: "13px";
+  font-size: 13px;
   color: white;
   align-content: center;
   background-color: #0094ff;
