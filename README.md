@@ -77,13 +77,13 @@
 
 ---
 
-## 📜 PLOVER ProgressStatus
+## 📜 SOLAFY ProgressStatus
 
 | 구분                    | 이름          | 링크                                                         |
 | ----------------------- | ------------- | ------------------------------------------------------------ |
 | **[문서]** 이슈관리     | Jira Software | [SOLAFY_Jira](https://solafy-ssafy.atlassian.net/secure/BrowseProjects.jspa) |
 | **[설계]** 와이어프레임 | Figma         | [SOLAFY_figma](https://www.figma.com/file/lRb9GPxT7EVxigi8mR14za/SOLAFY) |
-| **[설계]** RestAPI      | Swagger       | [SOLAFY_swagger]                                             |
-| **[설계]** 문서정리      | Confluence    | [SOLAFY_docs](https://solafy-ssafy.atlassian.net/wiki/home)  |
-| **[문서]** 자료정리      | Google drive  | [SOLAFY_box](https://drive.google.com/drive/folders/14RGnhdylCWOxAc0aIBzyZqxKKoA2s59m?usp=sharing) |
+| **[설계]** RestAPI 문서 | Gitbook       | [SOLAFY_gitbook](https://app.gitbook.com/@solafymaster/spaces) |
+| **[설계]** 문서정리     | Confluence    | [SOLAFY_docs](https://solafy-ssafy.atlassian.net/wiki/home)  |
+| **[문서]** 자료정리     | Google drive  | [SOLAFY_box](https://drive.google.com/drive/folders/14RGnhdylCWOxAc0aIBzyZqxKKoA2s59m?usp=sharing) |
 
