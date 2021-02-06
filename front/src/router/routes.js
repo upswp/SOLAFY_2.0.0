@@ -13,6 +13,17 @@ const routes = [
       
       },
       {
+        path: "/successsignup",
+        name: "SuccessSignup",
+        component: () => import("pages/user/SuccessSignup.vue"),
+      
+      },
+      {
+        path: "/signup",
+        name: "Signup",
+        component: () => import("pages/user/Signup.vue"),
+      },
+      {
         path: "/errorpassword",
         name: "ErrorPassword",
         component: () => import("pages/user/ErrorPassword.vue"),
@@ -28,7 +39,6 @@ const routes = [
         path: "/successpassword",
         name: "SuccessPassword",
         component: () => import("pages/user/SuccessPassword.vue"),
-      
       },
       // my page
       {
