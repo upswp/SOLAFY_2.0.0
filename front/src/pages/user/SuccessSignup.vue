@@ -36,15 +36,15 @@
 #loginbtn {
   width: 190px;
   height: 35px;
-  size: "13px";
+  font-size: 12px;
   color: white;
   align-content: center;
   background-color: #0094ff;
-  margin-bottom: 50px;
 }
 #textInput {
   text-align: center;
-  line-height: 50px;
+  line-height: 40px;
+  font-size: 14px;
   color: #000000;
 }
 #point {
