@@ -1,12 +1,12 @@
 <template>
-  <div class="q-pa-md" style="height: 250px">
+  <div style="height: 250px">
     <p id="title">비밀번호 찾기</p>
     <br />
     <p id="subTitle">
       개인정보 확인 후 가입시 입력하신 이메일로 확인 메일을 발송해 드립니다.
     </p>
-    <div class="column items-center" style="height: 700px ">
-      <div class="col-7">
+    <div class="column items-center" style="height: 800px ">
+      <div class="col-6">
         <div id="textInput">
           <q-input
             outlined
@@ -32,10 +32,10 @@
           />
         </div>
       </div>
-      <div class="col-4">
+      <div class="col-3">
         <q-btn id="loginbtn" label="인증하기" />
       </div>
-      <div class="col">
+      <div class="col-2">
         <div class="column items-center">
           <img
             style="width : 77px; height : 55px;"
@@ -49,8 +49,16 @@
         </div>
       </div>
     </div>
+    <Footer></Footer>
   </div>
 </template>
+<script>
+import Footer from "components/footer.vue";
+
+export default {
+  components: { Footer }
+};
+</script>
 <style>
 #title {
   font-style: inherit;
@@ -58,7 +66,6 @@
   text-align: center;
   font-size: 20px;
 }
-
 #subTitle {
   text-align: center;
   font-size: 12px;
