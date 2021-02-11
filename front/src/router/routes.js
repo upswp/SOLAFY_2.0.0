@@ -69,6 +69,14 @@ const routes = [
             path: "/mypage/withdrawal",
             component: () => import("pages/mypage/Withdrawal.vue"),
           },
+          {
+            path: "/mypage/edit",
+            component: () => import("pages/mypage/EditProfile.vue"),
+          },
+          {
+            path: "/mypage/changepassword",
+            component: () => import("pages/mypage/ChangePassword.vue"),
+          },
         ]
       },
     ]
