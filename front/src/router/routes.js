@@ -5,6 +5,12 @@ const routes = [
     component: () => import('layouts/MainLayout.vue'),
     children: [
       { path: '', component: () => import('pages/Index.vue') },
+      // home
+      {
+        path: "home",
+        name: "Home",
+        component: () => import("pages/Home.vue"),
+      },
       // user
       {
         path: "/findpassword",
@@ -73,7 +79,28 @@ const routes = [
       },
     ]
   },
-
+  {
+    // admin
+    path: '/admin',
+    component: () => import('layouts/AdminLayout.vue'),
+    children: [
+      {
+        path: "",
+        name: "Main",
+        component: () => import("pages/admin/Main.vue"),
+      },
+      {
+        path: "member",
+        name: "ManageMember",
+        component: () => import("pages/admin/ManageMember.vue"),
+      },
+      {
+        path: "problem",
+        name: "ManageProblem",
+        component: () => import("pages/admin/ManageProblem.vue"),
+      },
+    ]
+  },
   // Always leave this as last one,
   // but you can also remove it
   {
