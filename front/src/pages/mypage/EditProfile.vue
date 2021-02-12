@@ -78,17 +78,19 @@
 
         <div class="row justify-center" style="margin: 40px 0 0">
           <q-btn
+            dense
             outline
             size="14px"
             label="완료"
-            style="padding: 6px 10px; margin: 0 10px"
+            style="padding: 3px 30px; margin: 0 10px"
           />
           <q-btn
+            dense
             outline
             size="14px"
             label="취소"
             @click="$router.push('/mypage/profile')"
-            style="padding: 6px 10px;  margin: 0 10px"
+            style="padding: 3px 30px;  margin: 0 10px; "
           />
         </div>
       </div>
