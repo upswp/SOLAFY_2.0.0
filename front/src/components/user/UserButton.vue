@@ -5,10 +5,6 @@
 export default {
   name: "UserButton",
   props: {
-    active: {
-      type: Boolean,
-      default: false
-    },
     label: {
       type: String,
       default: ""
@@ -20,7 +16,7 @@ export default {
 #btn
   width: 190px
   height: 35px
-  font-size: 12px
+  font-size: 14px
   color: #FFFFFF
   align-content: center
   background-color: #0094ff
