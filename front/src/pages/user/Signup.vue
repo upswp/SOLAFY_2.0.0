@@ -119,7 +119,7 @@
       </div>
 
       <div class="col-1">
-        <q-btn id="loginbtn" label="Home" />
+        <q-btn id="loginbtn" label="회원가입" />
       </div>
     </div>
     <Footer></Footer>
