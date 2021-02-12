@@ -18,7 +18,7 @@
           <q-btn
             flat
             dense
-            icon="cloud"
+            icon="settings"
             size="12px"
             @click="$router.push('/mypage/edit')"
             style="margin-left: 30px"

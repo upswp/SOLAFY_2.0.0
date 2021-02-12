@@ -74,7 +74,10 @@ export default {
   },
   watch: {
     link: function() {
-      this.$router.push("/mypage/" + this.link);
+      if (this.link == "myarticle") this.$router.push("/mypage/myarticle/free");
+      else if (this.link == "bookmark")
+        this.$router.push("/mypage/bookmark/problem");
+      else this.$router.push("/mypage/" + this.link);
     }
   },
   methods: {}
