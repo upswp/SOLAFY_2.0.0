@@ -10,21 +10,37 @@
       </div>
       <div class="col-9">
         <div class="row" style="margin: 10px">
-          <span style="padding-left: 30px">alice</span>
-          <span style="padding-left: 30px">|</span>
-          <span style="padding-left: 30px">SSAFY 4기</span>
-          <span style="padding-left: 30px">|</span>
-          <span style="padding-left: 30px">platinum</span>
+          <span style="margin-left: 30px; margin-top: 3px">alice</span>
+          <span style="margin-left: 30px; margin-top: 3px">|</span>
+          <span style="margin-left: 30px; margin-top: 3px">SSAFY 4기</span>
+          <span style="margin-left: 30px; margin-top: 3px">|</span>
+          <span style="margin-left: 30px; margin-top: 3px">platinum</span>
+          <q-btn
+            flat
+            dense
+            icon="settings"
+            size="12px"
+            @click="$router.push('/mypage/edit')"
+            style="margin-left: 30px"
+          />
         </div>
         <div class="row" style="margin: 10px">
-          <span style="padding-left: 30px">SSAFY 백엔드 장인을 꿈 꿉니다</span>
-          <q-img
-            src="https://i.imgur.com/XplLIk9.png"
-            style="height: 20px; max-width: 20px; margin-left: 30px;"
+          <span style="margin-left: 30px; margin-top: 3px"
+            >SSAFY 백엔드 장인을 꿈 꿉니다</span
+          >
+          <q-btn
+            flat
+            dense
+            icon="cloud"
+            size="12px"
+            style="margin-left: 20px"
           />
-          <q-img
-            src="https://i.imgur.com/XplLIk9.png"
-            style="height: 20px; max-width: 20px; margin-left: 15px;"
+          <q-btn
+            flat
+            dense
+            icon="cloud"
+            size="12px"
+            style="margin-left: 20px"
           />
         </div>
       </div>
