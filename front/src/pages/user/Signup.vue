@@ -5,12 +5,14 @@
     </div>
     <div class="column items-center" style="height: 2000px ">
       <!-- 상단 text 위치 -->
-      <div id="textInput" class="col-1">
-        <p>
-          여러분의 행복한 학습을 위한 <br />
-          <strong>SOLAFY</strong> <br />
-          함께 해주셔서 감사합니다.<br />
-        </p>
+      <div class="col-2">
+        <div id="textInput">
+          <p>
+            여러분의 행복한 학습을 위한 <br />
+            <strong>SOLAFY</strong> <br />
+            함께 해주셔서 감사합니다.<br />
+          </p>
+        </div>
       </div>
       <!-- 프로필 사진 위치 -->
       <div class="col-2">
