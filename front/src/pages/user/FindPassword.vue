@@ -5,7 +5,7 @@
     <p id="subTitle">
       개인정보 확인 후 가입시 입력하신 이메일로 확인 메일을 발송해 드립니다.
     </p>
-    <div class="column items-center" style="height: 800px ">
+    <div class="column items-center" style="height: 1000px ">
       <div class="col-6">
         <div id="textInput">
           <q-input
@@ -33,7 +33,7 @@
         </div>
       </div>
       <div class="col-3">
-        <q-btn id="loginbtn" label="인증하기" />
+        <UserButton @click="goHome" label="인증하기"></UserButton>
       </div>
       <div class="col-2">
         <div class="column items-center">
@@ -54,9 +54,20 @@
 </template>
 <script>
 import Footer from "components/footer.vue";
+import UserButton from "components/user/UserButton.vue";
 
 export default {
-  components: { Footer }
+  components: { Footer, UserButton },
+  data() {
+    return {};
+  },
+  methods: {
+    goHome() {
+      this.$router.push({
+        name: "Home"
+      });
+    }
+  }
 };
 </script>
 <style>
@@ -70,14 +81,6 @@ export default {
   text-align: center;
   font-size: 12px;
   padding-bottom: 60px;
-}
-#loginbtn {
-  width: 190px;
-  height: 35px;
-  font-size: 12px;
-  color: white;
-  align-content: center;
-  background-color: #0094ff;
 }
 #textInput {
   width: 420px;

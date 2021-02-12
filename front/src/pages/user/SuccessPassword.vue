@@ -7,11 +7,28 @@
     </p>
     <div class="column items-center" style="height: 700px ">
       <div class="col-4">
-        <q-btn id="loginbtn" label="로그인" />
+        <UserButton @click="goIndex" label="로그인"></UserButton>
       </div>
     </div>
   </div>
 </template>
+<script>
+import UserButton from "components/user/UserButton.vue";
+
+export default {
+  components: { UserButton },
+  data() {
+    return {};
+  },
+  methods: {
+    goIndex() {
+      this.$router.push({
+        name: "Index"
+      });
+    }
+  }
+};
+</script>
 <style>
 #title {
   font-style: inherit;
@@ -24,13 +41,5 @@
   text-align: center;
   font-size: 12px;
   padding-bottom: 60px;
-}
-#loginbtn {
-  width: 190px;
-  height: 35px;
-  font-size: 12px;
-  color: white;
-  align-content: center;
-  background-color: #0094ff;
 }
 </style>

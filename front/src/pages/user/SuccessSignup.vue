@@ -21,7 +21,7 @@
         </div>
       </div>
       <div class="col-2">
-        <q-btn id="loginbtn" label="Home" />
+        <UserButton @click="goHome" label="Home"></UserButton>
       </div>
     </div>
     <Footer></Footer>
@@ -29,9 +29,20 @@
 </template>
 <script>
 import Footer from "components/footer.vue";
+import UserButton from "components/user/UserButton.vue";
 
 export default {
-  components: { Footer }
+  components: { Footer, UserButton },
+  data() {
+    return {};
+  },
+  methods: {
+    goHome() {
+      this.$router.push({
+        name: "Home"
+      });
+    }
+  }
 };
 </script>
 
@@ -43,15 +54,6 @@ export default {
   color: #1e3c88;
   font-size: 26px;
   background-color: #f1eff1;
-}
-
-#loginbtn {
-  width: 190px;
-  height: 35px;
-  font-size: 12px;
-  color: white;
-  align-content: center;
-  background-color: #0094ff;
 }
 #textInput {
   text-align: center;
