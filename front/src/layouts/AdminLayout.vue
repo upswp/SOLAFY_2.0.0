@@ -85,17 +85,21 @@ export default {
       this.$router.push("/admin/" + itemName);
     }
   },
-  created: function () {
-      // 만약 경로로 접근 했을 때, link값을 주소에 맞게 변경해줌
-      this.link = this.$route.path.toString().split('/')[2];
-      if(this.link==null){
-          this.link='main';
-      }
+  created() {
+    // 만약 경로로 접근 했을 때, link값을 주소에 맞게 변경해줌
+    var path = this.$route.path.toString();
+    if (path == "/admin" || path == "/admin/") {
+      this.link = "main";
+    } else {
+      this.link = path.split("/")[2];
+    }
   }
 };
 </script>
 <style lang="sass" scoped>
 .sidebar
+    position: fixed
+    left: calc( 50vw - 670px )
     max-width: 100px
     width: 100px
     height: 100vh
