@@ -60,10 +60,38 @@ const routes = [
           {
             path: "/mypage/myarticle",
             component: () => import("pages/mypage/MyArticle.vue"),
+            children: [
+              {
+                path: "/mypage/myarticle/free",
+                component: () => import("pages/board/List.vue"),
+              },
+              {
+                path: "/mypage/myarticle/question",
+                component: () => import("pages/board/List.vue"),
+              },
+              {
+                path: "/mypage/myarticle/problem",
+                component: () => import("pages/problem/List.vue"),
+              },
+              {
+                path: "/mypage/myarticle/problemset",
+                component: () => import("pages/problemset/List.vue"),
+              },
+            ]
           },
           {
             path: "/mypage/bookmark",
             component: () => import("pages/mypage/Bookmark.vue"),
+            children: [
+              {
+                path: "/mypage/bookmark/problem",
+                component: () => import("pages/problem/List.vue"),
+              },
+              {
+                path: "/mypage/bookmark/problemset",
+                component: () => import("pages/problemset/List.vue"),
+              },
+            ]
           },
           {
             path: "/mypage/withdrawal",
