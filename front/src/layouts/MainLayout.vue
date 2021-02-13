@@ -82,14 +82,4 @@ export default {
   justify-content: space-between
   list-style: none
   width: 1140px
-
-.area:before
-  display: inline-block
-  width: 1px
-  content: ''
-
-.area:after
-  display: inline-block
-  width: 1px
-  content: ''
 </style>
