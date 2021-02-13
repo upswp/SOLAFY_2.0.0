@@ -83,6 +83,7 @@
                     align="center"
                     class="detail-btn"
                     label="상세보기"
+                    @click="dialog = true"
                   />
                 </div>
               </q-td>
@@ -103,21 +104,51 @@
         </div>
       </div>
     </div>
+    <!-- dialog -->
+    <q-dialog v-model="dialog" persistent>
+      <q-card style="width: 500px; max-width: 70vw;">
+        <q-bar>
+          <q-icon name="laptop_chromebook" />
+          <div>회원정보</div>
+          <q-space />
+          <q-btn dense flat icon="close" v-close-popup>
+            <q-tooltip>Close</q-tooltip>
+          </q-btn>
+        </q-bar>
+
+        <q-card-section horizontal class="justify-center">
+          <q-card-section>
+            <q-markup-table flat separator=none> 
+              <tbody>
+                <DialogContent v-if="activeBtn == '승인대기'" title="명찰 사진" img="defaultname.png" />
+                <DialogContent title="이메일" content="lay0711@naver.com" />
+                <DialogContent title="이름" content="박싸피" />
+                <DialogContent title="기수" content="4기" />
+                <DialogContent title="전화번호" content="010-1234-5678" />
+                <DialogContent title="가입일자" content="2021.01.21" />
+              </tbody>
+            </q-markup-table>
+          </q-card-section>
+        </q-card-section>
+      </q-card>
+    </q-dialog>
   </div>
 </template>
 <script>
 import MenuButton from "components/MenuButton.vue";
+import DialogContent from "components/DialogContent.vue";
 
 export default {
   name: "ManageMember",
-  components: { MenuButton },
+  components: { MenuButton, DialogContent },
   data() {
     return {
       activeBtn: "",
+      dialog: false,
       keyword: "",
       type: "이름",
       types: ["이름", "아이디", "기수"],
-      tableSelect:"none",
+      tableSelect: "none",
       selected: [],
       lastIndex: null,
       columns: [
@@ -278,10 +309,10 @@ export default {
       this.activeBtn = menuName;
       if (this.activeBtn == "전체") {
         this.tableSelect = "none";
-        this.selected=[];
+        this.selected = [];
         this.tableData = this.memberData;
       } else {
-        this.tableSelect="multiple"
+        this.tableSelect = "multiple";
         this.tableData = this.unapprovedData;
       }
     }
