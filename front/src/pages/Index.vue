@@ -25,9 +25,15 @@
         </div>
       </div>
       <div class="col-4">
-        <q-btn id="loginbtn" label="로그인" />
+        <UserButton @click="link" label="로그인"></UserButton>
         <br />
-        <q-btn id="joinbtn" flat color="primary" label="회원가입" />
+        <q-btn
+          id="joinbtn"
+          @click="goSignup"
+          flat
+          color="primary"
+          label="회원가입"
+        />
       </div>
       <div class="col">
         <div class="column items-center">
@@ -48,20 +54,28 @@
 </template>
 <script>
 import Footer from "components/footer.vue";
+import UserButton from "components/user/UserButton.vue";
 
 export default {
-  components: { Footer }
+  components: { Footer, UserButton },
+  data() {
+    return {};
+  },
+  methods: {
+    link() {
+      this.$router.push({
+        name: "Home"
+      });
+    },
+    goSignup() {
+      this.$router.push({
+        name: "Signup"
+      });
+    }
+  }
 };
 </script>
 <style>
-#loginbtn {
-  width: 190px;
-  height: 35px;
-  size: "13px";
-  color: white;
-  align-content: center;
-  background-color: #0094ff;
-}
 #joinbtn {
   width: 190px;
   height: 35px;

@@ -13,12 +13,30 @@
         <p id="subText">
           5회 개인정보 또는 이메일 인증 실패시<br />
           관리자에게 문의 부탁드립니다. <br />(1/5)<br />
-          <q-btn id="loginbtn" label="돌아가기" />
+          <UserButton @click="goFindPassword" label="돌아가기"></UserButton>
         </p>
       </div>
     </div>
   </div>
 </template>
+<script>
+import UserButton from "components/user/UserButton.vue";
+
+export default {
+  components: { UserButton },
+  data() {
+    return {};
+  },
+  methods: {
+    goFindPassword() {
+      this.$router.push({
+        name: "FindPassword"
+      });
+    }
+  }
+};
+</script>
+
 <style>
 #title {
   font-style: inherit;
@@ -44,14 +62,6 @@
   padding-bottom: 60px;
   line-height: 40px;
   color: #b5b5b5;
-}
-#loginbtn {
-  width: 190px;
-  height: 35px;
-  font-size: 12px;
-  color: white;
-  align-content: center;
-  background-color: #a5cbe7;
 }
 
 #textbox {

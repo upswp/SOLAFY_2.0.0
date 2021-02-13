@@ -3,14 +3,16 @@
     <div>
       <img src="~src/assets/user/signup.png" style=" width: 100%;" />
     </div>
-    <div class="column items-center" style="height: 1900px ">
+    <div class="column items-center" style="height: 2000px ">
       <!-- 상단 text 위치 -->
-      <div id="textInput" class="col-1">
-        <p>
-          여러분의 행복한 학습을 위한 <br />
-          <strong>SOLAFY</strong> <br />
-          함께 해주셔서 감사합니다.<br />
-        </p>
+      <div class="col-2">
+        <div id="textInput">
+          <p>
+            여러분의 행복한 학습을 위한 <br />
+            <strong>SOLAFY</strong> <br />
+            함께 해주셔서 감사합니다.<br />
+          </p>
+        </div>
       </div>
       <!-- 프로필 사진 위치 -->
       <div class="col-2">
@@ -119,7 +121,7 @@
       </div>
 
       <div class="col-1">
-        <q-btn id="loginbtn" label="회원가입" />
+        <UserButton @click="goSuccessSignup" label="회원가입"></UserButton>
       </div>
     </div>
     <Footer></Footer>
@@ -127,9 +129,10 @@
 </template>
 <script>
 import Footer from "components/footer.vue";
+import UserButton from "components/user/UserButton.vue";
 
 export default {
-  components: { Footer },
+  components: { Footer, UserButton },
   name: "UserCreate",
   data() {
     return {
@@ -168,6 +171,11 @@ export default {
       console.log(e.target.files);
       const file = e.target.files[0]; // Get first index in files
       this.imagename = URL.createObjectURL(file); // Create File URL
+    },
+    goSuccessSignup() {
+      this.$router.push({
+        name: "SuccessSignup"
+      });
     }
   }
 };
