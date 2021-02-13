@@ -21,7 +21,7 @@
   display: flex
   justify-content: space-between
   list-style: none
-  width: 1040px
+  width: 1140px
   font-size: 12px
 
 .legal:before
