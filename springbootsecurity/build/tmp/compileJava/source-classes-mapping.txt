@@ -1,0 +1,5 @@
+com/solafy/Application.java
+ com.solafy.Application
+com/solafy/controller/HelloController.java
+ com.solafy.controller.HelloController
+ com.solafy.controller.HelloController$Hello

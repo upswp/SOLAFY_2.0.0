@@ -1,0 +1,38 @@
+server:
+  servlet:
+    context-path: /solafy
+spring:
+  datasource:
+#    AWS setting:
+#    driver-class-name: org.mariadb.jdbc.Driver
+#    url: jdbc:mariadb://solafydb.cr7qoevh9p3x.ap-northeast-2.rds.amazonaws.com/solafy?characterEncoding=UTF-8&serverTimezone=UTC
+#    username: root
+#    password: solafy1005!
+#    local setting:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/solafy?serverTimezone=UTC&characterEncoding=UTF-8
+    username: ssafy4
+    password: ssafy4
+
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    open-in-view: false
+    show-sql: true
+    hibernate:
+      format_sql: true
+      ddl-auto: update
+  messages:
+    basename: i18n/exception
+    encoding: UTF-8
+    jwt:
+      secret: govlepel@$&
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE
