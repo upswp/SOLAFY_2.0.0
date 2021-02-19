@@ -3,21 +3,16 @@ package com.solafy.controller;
 import com.solafy.entity.Member;
 import com.solafy.model.BasicResponse;
 import com.solafy.model.MailDto;
-import com.solafy.model.MemberDto;
+import com.solafy.model.member.MemberDto;
 import com.solafy.repo.MemberRepository;
 import com.solafy.service.EmailService;
 import com.solafy.service.RegexChecker;
 import com.solafy.service.SortService;
 import io.swagger.annotations.*;
 import lombok.RequiredArgsConstructor;
-import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
-import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -41,19 +36,12 @@ public class MemberController {
     @ApiImplicitParams({
             @ApiImplicitParam(name = "X-AUTH-TOKEN", value = "로그인 성공 후 access_token", required = true, dataType = "String", paramType = "header")
     })
-    @ApiOperation(value = "회원 목록 조회", notes = "모든 회원을 조회한다")
+    @ApiOperation(value = "모든 회원 목록 조회", notes = "모든 회원을 조회한다")
     @GetMapping(value = "")
     public BasicResponse findAllMember() {
-        BasicResponse result = new BasicResponse("success");
-        List<Member> mlist = memberRepository.findAll();
-        List<MemberDto> list = new ArrayList<>();
-        for(int i = 0; i < mlist.size(); i++){
-            MemberDto memberDto = new MemberDto(mlist.get(i));
-            list.add(memberDto);
-        }
-        result.message = "회원 목록을 반환합니다.";
-        result.data = list;
-        return result;
+        List<Member> mList = memberRepository.findAll();
+        List<MemberDto> list = sortService.convertMemberToDto(mList);
+        return new BasicResponse("success","전체 회원 목록을 반환합니다.",list);
     }
 
     @ApiImplicitParams({
@@ -62,22 +50,14 @@ public class MemberController {
     @ApiOperation(value = "승인 회원정보", notes = "승인 회원정보 상세보기.")
     @GetMapping(value = "/{memberNo}")
     public BasicResponse memberDetail(@ApiParam(value = "회원번호", required = true) @PathVariable(required = true) long memberNo) {
-        BasicResponse result = new BasicResponse("success");
         Member member = memberRepository.findByMemberNo(memberNo);
         if(member == null) {
-            result.status = "error";
-            result.message = "잘못된 회원번호입니다.";
-            return result;
+            return new BasicResponse("error","잘못된 회원번호입니다.",null);
         }else if(member.getRole().equals("ROLE_WAIT")){
-            result.status = "error";
-            result.message = "이 회원은 미승인된 회원입니다.";
-            return result;
+            return new BasicResponse("error","이 회원은 미승인된 회원입니다.",null);
         }
         MemberDto memberDto = new MemberDto(member);
-        result.message = "회원 상세정보 조회를 성공했습니다.";
-        result.data = memberDto;
-
-        return result;
+        return new BasicResponse("success","회원 상세정보 조회를 성공했습니다.",memberDto);
     }
 
     @ApiImplicitParams({
@@ -86,22 +66,14 @@ public class MemberController {
     @ApiOperation(value = "미승인 회원정보", notes = "미승인 회원정보 상세보기.")
     @GetMapping(value = "/unapproved/{memberNo}")
     public BasicResponse unapprovedDetail(@ApiParam(value = "회원번호", required = true) @PathVariable(required = true) long memberNo) {
-        BasicResponse result = new BasicResponse("success");
         Member member = memberRepository.findByMemberNo(memberNo);
         if(member == null) {
-            result.status = "error";
-            result.message = "잘못된 회원번호입니다.";
-            return result;
+            return new BasicResponse("error","잘못된 회원번호입니다.",null);
         }else if(!member.getRole().equals("ROLE_WAIT")){
-            result.status = "error";
-            result.message = "이 회원은 승인된 회원입니다.";
-            return result;
+            return new BasicResponse("error","이 회원은 승인된 회원입니다.",null);
         }
         MemberDto memberDto = new MemberDto(member);
-        result.message = "회원 상세정보 조회를 성공했습니다.";
-        result.data = memberDto;
-
-        return result;
+        return new BasicResponse("success","회원 상세정보 조회를 성공했습니다.",memberDto);
     }
 
     @ApiImplicitParams({
@@ -113,19 +85,10 @@ public class MemberController {
                                     @ApiParam(value = "정렬기준") @RequestParam(required = false) String sort,
                                     @ApiParam(value = "검색타입") @RequestParam(required = false) String type,
                                     @ApiParam(value = "검색키워드") @RequestParam(required = false) String keyword) {
-        BasicResponse result = new BasicResponse("success");
-
-        List<Member> mlist = sortService.sortMember(pageNo,sort,type,keyword,"approved");
-
-        List<MemberDto> list = new ArrayList<>();
-        for(int i = 0; i < mlist.size(); i++){
-            MemberDto memberDto = new MemberDto(mlist.get(i));
-            list.add(memberDto);
-        }
-        result.message = "승인된 회원 목록을 반환합니다.";
-        if(list.size() == 0) result.message = "승인된 회원 목록이 없습니다.";
-        result.data = list;
-        return result;
+        List<Member> mList = sortService.sortMember(pageNo,sort,type,keyword,"approved");
+        List<MemberDto> list = sortService.convertMemberToDto(mList);
+        if(list.size() == 0) return new BasicResponse("success","조건에 맞는 승인된 회원이 없습니다.",null);
+        else return new BasicResponse("success","승인 회원 목록을 반환합니다.",list);
     }
 
     @ApiImplicitParams({
@@ -137,19 +100,10 @@ public class MemberController {
                                     @ApiParam(value = "정렬기준") @RequestParam(required = false) String sort,
                                     @ApiParam(value = "검색타입") @RequestParam(required = false) String type,
                                     @ApiParam(value = "검색키워드") @RequestParam(required = false) String keyword) {
-        BasicResponse result = new BasicResponse("success");
-
-        List<Member> mlist = sortService.sortMember(pageNo,sort,type,keyword,"unapproved");
-
-        List<MemberDto> list = new ArrayList<>();
-        for(int i = 0; i < mlist.size(); i++){
-            MemberDto memberDto = new MemberDto(mlist.get(i));
-            list.add(memberDto);
-        }
-        result.message = "미승인 회원 목록을 반환합니다.";
-        if(list.size() == 0) result.message = "미승인된 회원 목록이 없습니다.";
-        result.data = list;
-        return result;
+        List<Member> mList = sortService.sortMember(pageNo,sort,type,keyword,"unapproved");
+        List<MemberDto> list = sortService.convertMemberToDto(mList);
+        if(list.size() == 0) return new BasicResponse("success","조건에 맞는 미승인된 회원이 없습니다.",null);
+        else return new BasicResponse("success","미승인 회원 목록을 반환합니다.",list);
     }
 
     @ApiImplicitParams({
@@ -158,23 +112,16 @@ public class MemberController {
     @ApiOperation(value = "회원 삭제", notes = "회원을 삭제합니다.")
     @DeleteMapping(value = "/{memberNo}")
     public BasicResponse deleteMember(@ApiParam(value = "회원번호", required = true) @PathVariable(required = true) long memberNo) {
-        BasicResponse result = new BasicResponse("success");
         Member member = memberRepository.findByMemberNo(memberNo);
         if(member == null) {
-            result.status = "error";
-            result.message = "잘못된 회원번호입니다.";
-            return result;
+            return new BasicResponse("error","잘못된 회원번호입니다.",null);
         }
         memberRepository.deleteByMemberNo(memberNo);
         member = memberRepository.findByMemberNo(memberNo);
         if(member != null) {
-            result.status = "error";
-            result.message = "회원탈퇴에 실패하였습니다.";
-            return result;
+            return new BasicResponse("error","회원탈퇴에 실패하였습니다",null);
         }
-        result.message = "회원탈퇴에 성공하였습니다.";
-
-        return result;
+        return new BasicResponse("success","회원탈퇴에 성공하였습니다.",null);
     }
 
     @ApiImplicitParams({
@@ -183,46 +130,30 @@ public class MemberController {
     @ApiOperation(value = "회원 정보 업데이트", notes = "회원 정보를 수정합니다.")
     @PutMapping(value = "")
     public BasicResponse updateMember(@RequestBody MemberDto memberDto) {
-        BasicResponse result = new BasicResponse("success");
         long memberNo = memberDto.getMemberNo();
         Member memberObj = memberRepository.findByMemberNo(memberNo);
         if(memberObj == null){
-            result.status = "error";
-            result.message = "잘못된 회원번호입니다.";
-            result.data = false;
-            return result;
+            return new BasicResponse("error","잘못된 회원번호입니다.",null);
         }
         long nametagId = memberDto.getNametagId();
         long profileId = memberDto.getProfileId();
         String name = memberDto.getName();
-        if(name == null || name.equals("")){
-            result.status = "error";
-            result.message = "이름을 입력하세요.";
-            result.data = false;
-            return result;
+        if(!regexChecker.stringCheck(name)){
+            return new BasicResponse("error","이름을 입력하세요.",null);
         }
         long ssafy = memberDto.getSsafy();
         if(ssafy < 1){
-            result.status = "error";
-            result.message = "기수를 입력하세요.";
-            result.data = false;
-            return result;
+            return new BasicResponse("error","기수를 입력하세요.",null);
         }
         String email = memberDto.getEmail();
         if(!regexChecker.emailCheck(email)){
-            result.status = "error";
-            result.message = "이메일 형식이 잘못되었습니다.";
-            result.data = false;
-            return result;
+            return new BasicResponse("error","이메일 형식이 잘못되었습니다.",null);
         }
         String password = memberDto.getPassword();
-        if(password == null || password.equals("")) password = memberObj.getPassword();
+        if(!regexChecker.stringCheck(password)) password = memberObj.getPassword();
         String phoneNum = memberDto.getPhoneNum();
-        if(phoneNum == null || phoneNum.equals("")){
-            result.status = "error";
-            result.message = "전화번호를 입력하세요.";
-            result.data = false;
-            return result;
+        if(!regexChecker.phoneCheck(phoneNum)){
+            return new BasicResponse("error","전화번호 형식이 잘못되었습니다.",null);
         }
         LocalDateTime createDate = memberObj.getCreateDate();
         String role = memberObj.getRole();
@@ -241,37 +172,24 @@ public class MemberController {
                 .roles(Collections.singletonList("ROLE_USER"))
                 .build());
         if(member == null) {
-            result.status = "error";
-            result.message = "권한 변경에 실패하였습니다.";
-            result.data = false;
-            return result;
+            return new BasicResponse("error","회원정보 수정에 실패하였습니다.",null);
         }
-        result.message = "권한 변경에 성공하였습니다.";
-        result.data = true;
-
-        return result;
+        return new BasicResponse("success","회원정보 수정에 성공하였습니다.",memberNo);
     }
 
     @ApiImplicitParams({
             @ApiImplicitParam(name = "X-AUTH-TOKEN", value = "로그인 성공 후 access_token", required = true, dataType = "String", paramType = "header")
     })
     @ApiOperation(value = "회원 승인", notes = "회원을 승인한다.")
-    @PutMapping(value = "/{memberNo}")
+    @PutMapping(value = "/admin/{memberNo}")
     public BasicResponse updateMemberRole(@ApiParam(value = "회원번호", required = true) @PathVariable long memberNo) {
-        BasicResponse result = new BasicResponse("success");
         Member memberObj = memberRepository.findByMemberNo(memberNo);
         if(memberObj == null){
-            result.status = "error";
-            result.message = "잘못된 회원번호입니다.";
-            result.data = false;
-            return result;
+            return new BasicResponse("error","잘못된 회원번호입니다.",false);
         }
         String memberRole = memberObj.getRole();
         if(!memberRole.equals("ROLE_WAIT")){
-            result.status = "error";
-            result.message = "권한을 변경할 필요가 없는 회원입니다.";
-            result.data = false;
-            return result;
+            return new BasicResponse("error","권한을 변경할 필요가 없는 회원입니다.",false);
         }
         String name = memberObj.getName();
         long ssafy = memberObj.getSsafy();
@@ -292,15 +210,9 @@ public class MemberController {
                 .roles(Collections.singletonList("ROLE_USER"))
                 .build());
         if(member == null) {
-            result.status = "error";
-            result.message = "권한 변경에 실패하였습니다.";
-            result.data = false;
-            return result;
+            return new BasicResponse("error","권한 변경에 실패하였습니다.",false);
         }
-        result.message = "권한 변경에 성공하였습니다.";
-        result.data = true;
-
-        return result;
+        return new BasicResponse("success","권한 변경에 성공하였습니다.",true);
     }
 
     @ApiImplicitParams({
@@ -309,14 +221,13 @@ public class MemberController {
     @ApiOperation(value = "이메일 발송 ", notes = "이메일을 발송한다")
     @GetMapping(value = "/emailsend")
     public BasicResponse updateRole(@ApiParam(value = "이메일", required = true) @RequestParam String email) {
-        BasicResponse result = new BasicResponse("success");
-        MailDto mailDto = new MailDto();
-        mailDto.setAddress(email);
-        mailDto.setTitle("타이틀");
-        mailDto.setMessage("메시지");
+        Member member = memberRepository.findByEmail(email);
+        if(member == null){
+            return new BasicResponse("error","가입되지 않은 이메일입니다.",null);
+        }
+        MailDto mailDto = new MailDto(email,"타이틀","메시지");
         mailService.mailSend(mailDto);
-
-        return result;
+        return new BasicResponse("success","이메일을 발송하였습니다.",null);
     }
 
 }

@@ -1,6 +1,7 @@
 package com.solafy.service;
 
 import com.solafy.entity.Member;
+import com.solafy.model.member.MemberDto;
 import com.solafy.repo.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -17,6 +18,17 @@ public class SortService {
     @Autowired
     private MemberRepository memberRepository;
 
+    // Member 리스트를 MemberDto 리스트로 전환 (password token을 감추기 위함)
+    public List<MemberDto> convertMemberToDto(List<Member> list){
+        List<MemberDto> newList = new ArrayList<>();
+        for(int i = 0; i < list.size(); i++){
+            MemberDto memberDto = new MemberDto(list.get(i));
+            newList.add(memberDto);
+        }
+        return newList;
+    }
+
+    // 페이지 번호, 검색 키워드, 회원 권한에 따른 목록 검색
     public List<Member> sortMember(int pageNo, String sort, String type, String keyword, String role){
         if(pageNo < 1) pageNo = 1;
         String sortColumn = "", sortType = "";
