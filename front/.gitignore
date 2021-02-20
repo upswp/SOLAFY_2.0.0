@@ -1,7 +1,10 @@
 .DS_Store
 .thumbs.db
 node_modules
-
+# local env files
+.env.local
+.env.*.local
+.env
 # Quasar core related directories
 .quasar
 /dist
