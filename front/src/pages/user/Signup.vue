@@ -46,7 +46,13 @@
             placeholder="email"
             hint="SOLAFY ID로 사용될 주소입니다."
             v-model="signupData.email"
-          />
+            :error="!checkEmailForm"
+          >
+            <template v-slot:error>
+              올바른 형식의 이메일이 아닙니다.
+            </template>
+          </q-input>
+
           <br />
           <br />
           <q-input
@@ -54,14 +60,24 @@
             label="비밀번호"
             type="password"
             v-model="signupData.password"
-          />
+            :error="!checkPasswordForm"
+          >
+            <template v-slot:error>
+              영문, 숫자 포함 8 자리 이상입력해주세요!
+            </template>
+          </q-input>
           <br />
           <q-input
             outlined
-            type="password"
             label="비밀번호 확인"
+            type="password"
             v-model="signupData.passwordConfirm"
-          />
+            :error="!checkPasswordConfirmationForm"
+          >
+            <template v-slot:error>
+              비밀번호 확인이 실패하였습니다.
+            </template>
+          </q-input>
           <br />
           <br />
           <q-input outlined label="이름" v-model="signupData.name" />
@@ -72,6 +88,7 @@
             label="SSAFY 기수"
             hint="SSAFY 기수를 숫자로 입력해주세요. 4기 -> 4"
             v-model="signupData.ssafy"
+            suffix=""
           />
           <br />
           <br />
@@ -144,6 +161,7 @@
 import Footer from "components/footer.vue";
 import UserButton from "components/user/UserButton.vue";
 import Axios from "axios";
+import { notify } from "src/api/common.js";
 
 export default {
   components: { Footer, UserButton },
@@ -173,60 +191,83 @@ export default {
         // 명찰 기본 이미지
         defaultname: require("src/assets/user/defaultname.png"),
         //개인정보 동의 여부
-        val: false
+        val: false,
+        isPwd: true
       },
       error: {
         email: false,
-        nickName: false,
         password: false,
         passwordConfirm: false
       },
       isSubmit: false
     };
   },
-  created() {
-    this.ifError();
-  },
-  watch: {
-    signupData: {
-      deep: true,
-
-      handler() {
-        this.checkEmailForm();
-        this.checkPasswordForm();
-        this.checkPasswordConfirmationForm();
-      }
-    }
-  },
-  methods: {
-    /**
-     * @Method설명 : 오류시 알람창 띄우기
-     * @변경이력 :
-     */
-    ifError() {
-      if (this.error.email != false) {
-        notify("red", "white", "warning", this.error.email);
-      }
-      if (this.error.password != false) {
-        notify("red", "white", "warning", this.error.password);
-      }
-      if (this.error.passwordConfirm != false) {
-        notify("red", "white", "warning", this.error.passwordConfirm);
-      }
-    },
+  computed: {
     /**
      * @Method설명 : 이메일 형식 검사(abcs@email.com)
      * @변경이력 :
      */
     checkEmailForm() {
+      var flag = true;
       if (
         this.signupData.email.length > 0 &&
         !this.validEmail(this.signupData.email)
       ) {
-        this.error.email = "올바른 이메일 형식이 아닙니다.";
-      } else {
-        this.error.email = false;
+        flag = false;
+        this.checkEmilError();
+      } else flag = true;
+
+      return flag;
+    },
+
+    /**
+     * @Method설명 : 비밀번호 형식 검사(영문, 숫자 포함 8자리 이상)
+     * @변경이력 :
+     */
+    checkPasswordForm() {
+      var flag = true;
+      if (
+        this.signupData.password.length >= 8 &&
+        !this.validPassword(this.signupData.password)
+      ) {
+        flag = false;
+        checkPasswordError();
       }
+      if (
+        this.signupData.password.length > 0 &&
+        this.signupData.password.length < 8
+      ) {
+        flag = false;
+        checkPasswordError();
+      } else flag = true;
+      return flag;
+    },
+    /**
+     * @Method설명 : 비밀번호 확인
+     * @변경이력 :
+     */
+    checkPasswordConfirmationForm() {
+      var flag = true;
+      if (
+        this.signupData.passwordConfirm.length > 0 &&
+        this.signupData.password != this.signupData.passwordConfirm
+      ) {
+        flag = false;
+        checkPasswordConfirmError();
+      } else flag = true;
+      return flag;
+    }
+  },
+
+  methods: {
+    checkEmilError() {
+      this.error.email = true;
+    },
+    checkPasswordError() {
+      this.error.password = true;
+    },
+    checkPasswordConfirmError() {
+      this.error.passwordConfirm = true;
     },
     /**
      * @Method설명 : 정규식을 이용한 이메일 유효성 검사
@@ -235,27 +276,8 @@ export default {
     validEmail(email) {
       // eslint-disable-next-line
       var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-      return re.test(email);
-    },
 
-    /**
-     * @Method설명 : 비밀번호 형식 검사(영문, 숫자 포함 8자리 이상)
-     * @변경이력 :
-     */
-    checkPasswordForm() {
-      if (
-        this.signupData.password.length > 0 &&
-        this.signupData.password.length < 8
-      ) {
-        this.error.password = "비밀번호 길이가 너무 짧습니다.";
-      } else if (
-        this.signupData.password.length >= 8 &&
-        !this.validPassword(this.signupData.password)
-      ) {
-        this.error.password = "영문, 숫자 포함 8자리 이상이어야 합니다.";
-      } else {
-        this.error.password = false;
-      }
+      return re.test(email);
     },
     /**
      * @Method설명 : 정규식을 이용한 비밀번호 유효성 검사
@@ -264,32 +286,6 @@ export default {
     validPassword(password) {
       var va = /^(?=.*\d)(?=.*[a-z])(?=.*[a-zA-Z]).{8,}$/;
       return va.test(password);
-    },
-
-    /**
-     * @Method설명 : 비밀번호 확인
-     * @변경이력 :
-     */
-    checkPasswordConfirmationForm() {
-      if (this.signupData.password != this.signupData.passwordConfirm) {
-        this.error.passwordConfirm = "비밀번호가 일치하지 않습니다.";
-      } else {
-        this.error.passwordConfirm = false;
-      }
-
-      // 버튼 활성화
-      if (
-        this.signupData.nickName.length > 0 &&
-        this.signupData.email.length > 0 &&
-        this.signupData.password.length > 0 &&
-        this.signupData.passwordConfirm.length > 0
-      ) {
-        let isSubmit = true;
-        Object.values(this.error).map(v => {
-          if (v) isSubmit = false;
-        });
-        this.isSubmit = isSubmit;
-      }
     },
 
     // 사진등록관련 methods
@@ -338,6 +334,14 @@ export default {
      * @변경이력 :
      */
     goSuccessSignup() {
+      if (
+        this.error.email ||
+        this.error.password ||
+        this.error.passwordConfirm
+      ) {
+        this.isSubmit = false;
+      }
+
       if (this.isSubmit) {
         Axios.post("members/signup" + this.signupData)
           .then(response => {
@@ -350,6 +354,8 @@ export default {
             console.log(error);
             notify("red", "white", "error", "회원가입 신청 실패");
           });
+      } else {
+        notify("red", "white", "error", "회원가입 신청 실패");
       }
     }
   }
