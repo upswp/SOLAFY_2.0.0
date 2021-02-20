@@ -48,6 +48,14 @@
             v-model="signupData.email"
             :error="!checkEmailForm"
           >
+            <template v-slot:prepend>
+              <q-btn
+                flat
+                color="primary"
+                label="email 중복확인"
+                @click="checkEmail()"
+              />
+            </template>
             <template v-slot:error>
               올바른 형식의 이메일이 아닙니다.
             </template>
@@ -63,7 +71,7 @@
             :error="!checkPasswordForm"
           >
             <template v-slot:error>
-              영문, 숫자 포함 8 자리 이상입력해주세요!
+              영문, 숫자, 특수문자 포함 8 자리 이상입력해주세요!
             </template>
           </q-input>
           <br />
@@ -98,7 +106,7 @@
       <!-- 명찰사진 위치 -->
       <div class="col-3">
         <div class="column items-center">
-          <div v-if="signupData.simagename != null">
+          <div v-if="signupData.imagename != null">
             <q-item-section>
               <img
                 id="imgsize"
@@ -172,6 +180,8 @@ export default {
         //* 회원 정보
         // 회원 이메일
         email: "",
+        // 이메일 체크
+        checkEmail: false,
         // 회원 이름
         name: "",
         // 비밀번호
@@ -191,8 +201,7 @@ export default {
         // 명찰 기본 이미지
         defaultname: require("src/assets/user/defaultname.png"),
         //개인정보 동의 여부
-        val: false,
-        isPwd: true
+        val: false
       },
       error: {
         email: false,
@@ -216,7 +225,6 @@ export default {
         flag = false;
         this.checkEmilError();
       } else flag = true;
-
       return flag;
     },
 
@@ -227,18 +235,17 @@ export default {
     checkPasswordForm() {
       var flag = true;
       if (
-        this.signupData.password.length >= 8 &&
-        !this.validPassword(this.signupData.password)
-      ) {
-        flag = false;
-        checkPasswordError();
-      }
-      if (
         this.signupData.password.length > 0 &&
         this.signupData.password.length < 8
       ) {
         flag = false;
-        checkPasswordError();
+        this.checkPasswordError();
+      } else if (
+        this.signupData.password.length >= 8 &&
+        !this.validPassword(this.signupData.password)
+      ) {
+        flag = false;
+        this.checkPasswordError();
       } else flag = true;
       return flag;
     },
@@ -253,12 +260,11 @@ export default {
         this.signupData.password != this.signupData.passwordConfirm
       ) {
         flag = false;
-        checkPasswordConfirmError();
+        this.checkPasswordConfirmError();
       } else flag = true;
       return flag;
     }
   },
-
   methods: {
     checkEmilError() {
       this.error.email = true;
@@ -284,7 +290,7 @@ export default {
      * @변경이력 :
      */
     validPassword(password) {
-      var va = /^(?=.*\d)(?=.*[a-z])(?=.*[a-zA-Z]).{8,}$/;
+      var va = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/;
       return va.test(password);
     },
 
@@ -328,20 +334,64 @@ export default {
       const file = e.target.files[0]; // Get first index in files
       this.signupData.imagename = URL.createObjectURL(file); // Create File URL
     },
+    /**
+     * @Method설명 : 이메일 중복 체크
+     * @변경이력 :
+     */
+    checkEmail() {
+      Axios.get("members/email" + this.signupData.email)
+        .then(response => {
+          if (response.data == "success") {
+            this.signupData.checkEmail = true;
+            notify("green", "white", "check", "사용 가능한 이메일입니다");
+          } else {
+            this.signupData.email = "";
+            notify("red-6", "white", "warning", "사용할 수 없는 이메일입니다");
+          }
+        })
+        .catch(error => {
+          console.log(error);
+          notify("red", "white", "error", "중복 검사 중 오류 발생");
+        });
+    },
 
     /**
      * @Method설명 :[POST] 회원가입 성공시 페이지 이동
      * @변경이력 :
      */
     goSuccessSignup() {
-      if (
-        this.error.email ||
-        this.error.password ||
-        this.error.passwordConfirm
-      ) {
+      if (this.error.email) {
+        notify("red", "white", "error", "이메일을 다시 확인해 주세요.");
         this.isSubmit = false;
+      } else if (!this.signupData.checkEmail) {
+        notify(
+          "red",
+          "white",
+          "error",
+          "이메일 중복검사를 다시 확인해 주세요."
+        );
+        this.isSubmit = false;
+      } else if (this.error.password || this.error.passwordConfirm) {
+        notify("red", "white", "error", "비밀번호를 다시 확인해 주세요.");
+        this.isSubmit = false;
+      } else if (!this.signupData.val) {
+        notify("red", "white", "error", "개인정보 동의를 다시 확인해주세요.");
+        this.isSubmit = false;
+      } else if (this.signupData.name == null) {
+        notify("red", "white", "error", "이름 입력 해주세요!");
+        this.isSubmit = false;
+      } else if (this.signupData.ssafy == null) {
+        notify("red", "white", "error", "기수 입력 해주세요!");
+        this.isSubmit = false;
+      } else if (this.signupData.phone == null) {
+        notify("red", "white", "error", "휴대폰 번호 입력 해주세요!");
+        this.isSubmit = false;
+      } else if (this.signupData.imagename == null) {
+        notify("red", "white", "error", "명찰사진을 입력 해주세요!");
+        this.isSubmit = false;
+      } else {
+        this.isSubmit = true;
       }
-
       if (this.isSubmit) {
         Axios.post("members/signup" + this.signupData)
           .then(response => {
@@ -355,7 +405,7 @@ export default {
             notify("red", "white", "error", "회원가입 신청 실패");
           });
       } else {
-        notify("red", "white", "error", "회원가입 신청 실패");
+        notify("red", "white", "error", "회원가입 정보를 확인해주세요.");
       }
     }
   }
