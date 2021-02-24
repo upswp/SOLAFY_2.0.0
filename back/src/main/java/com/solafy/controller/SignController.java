@@ -3,10 +3,11 @@ package com.solafy.controller;
 import com.solafy.config.JwtTokenProvider;
 import com.solafy.entity.Member;
 import com.solafy.model.BasicResponse;
-import com.solafy.model.MailDto;
-import com.solafy.model.MemberDto;
+import com.solafy.model.member.FindPasswordDto;
+import com.solafy.model.member.LoginMember;
+import com.solafy.model.member.MemberDto;
+import com.solafy.model.member.SignupMember;
 import com.solafy.repo.MemberRepository;
-import com.solafy.service.EmailService;
 import com.solafy.service.RegexChecker;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -36,87 +37,60 @@ public class SignController {
 
     @ApiOperation(value = "로그인", notes = "이메일 회원 로그인을 한다.")
     @PostMapping(value = "/login")
-    public BasicResponse loginMember(@RequestBody MemberDto memberDto) {
-        BasicResponse result = new BasicResponse("success");
-        String email = memberDto.getEmail();
+    public BasicResponse loginMember(@RequestBody LoginMember loginMember) {
+        String email = loginMember.getEmail();
         if(!regexChecker.emailCheck(email)){
-            result.status = "error";
-            result.message = "이메일 형식이 잘못되었습니다.";
-            return result;
+            return new BasicResponse("error","이메일 형식이 잘못되었습니다.",null);
         }
         Member member = memberRepository.findByEmail(email);
         if(member == null){
-            result.status = "error";
-            result.message = "이메일이 잘못되었습니다.";
-            return result;
+            return new BasicResponse("error","가입되지 않은 이메일입니다.",null);
         }
-        String password = memberDto.getPassword();
+        String password = loginMember.getPassword();
         if (!passwordEncoder.matches(password, member.getPassword())) {
-            result.status = "error";
-            result.message = "비밀번호가 틀렸습니다.";
-            return result;
+            return new BasicResponse("error","비밀번호가 틀렸습니다.",null);
         }
         String token = jwtTokenProvider.createToken(String.valueOf(member.getMemberNo()), member.getRoles());
-        result.message = "로그인에 성공하였습니다.";
-        result.data = token;
-
-        return result;
+        return new BasicResponse("success","로그인에 성공하였습니다.",token);
     }
 
     @ApiOperation(value = "비밀번호 변경 요청", notes = "비밀번호 변경 요청을 한다.")
     @PostMapping(value = "/password")
-    public BasicResponse findPassword(@RequestBody MemberDto memberDto) {
-        BasicResponse result = new BasicResponse("success");
-        int count = memberDto.getCount();
+    public BasicResponse findPassword(@RequestBody FindPasswordDto findPasswordDto) {
+        int count = findPasswordDto.getCount();
         if(count >= 5){
-            result.status = "error";
-            result.message = "비밀번호 변경 요청을 5회 이상 실패했습니다.";
-            return result;
+            return new BasicResponse("error","비밀번호 변경 요청을 5회 이상 실패했습니다.",null);
         }
-        String email = memberDto.getEmail();
+        String email = findPasswordDto.getEmail();
         if(!regexChecker.emailCheck(email)){
-            result.status = "error";
-            result.message = "이메일 형식이 잘못되었습니다.";
-            return result;
+            return new BasicResponse("error","이메일 형식이 잘못되었습니다.",null);
         }
         Member member = memberRepository.findByEmail(email);
         if(member == null){
-            result.status = "error";
-            result.message = "이메일이 잘못되었습니다.";
-            return result;
+            return new BasicResponse("error","이메일이 잘못되었습니다.",null);
         }
-        if(!member.getName().equals(memberDto.getName())){
-            result.status = "error";
-            result.message = "이름이 일치하지 않습니다.";
-            return result;
+        if(!member.getName().equals(findPasswordDto.getName())){
+            return new BasicResponse("error","이름이 일치하지 않습니다.",null);
         }
-        if(member.getSsafy() != memberDto.getSsafy()){
-            result.status = "error";
-            result.message = "기수가 일치하지 않습니다.";
-            return result;
+        if(member.getSsafy() != findPasswordDto.getSsafy()){
+            return new BasicResponse("error","기수가 일치하지 않습니다.",null);
         }
-        result.message = "비밀번호 요청에 성공하였습니다.";
-
-        return result;
+        return new BasicResponse("success","비밀번호 요청에 성공하였습니다.",null);
     }
 
     @ApiOperation(value = "가입", notes = "회원가입을 한다.")
     @PostMapping(value = "/signup")
-    public BasicResponse createMember(@RequestBody MemberDto memberDto) {
-        BasicResponse result = new BasicResponse("success");
-        long nametagId = memberDto.getNametagId();
-        long profileId = memberDto.getProfileId();
-        String name = memberDto.getName();
-        long ssafy = memberDto.getSsafy();
-        String email = memberDto.getEmail();
+    public BasicResponse createMember(@RequestBody SignupMember signupMember) {
+        long nametagId = signupMember.getNametagId();
+        long profileId = signupMember.getProfileId();
+        String name = signupMember.getName();
+        long ssafy = signupMember.getSsafy();
+        String email = signupMember.getEmail();
         if(!regexChecker.emailCheck(email)){
-            result.status = "error";
-            result.message = "이메일 형식이 잘못되었습니다.";
-            result.data = false;
-            return result;
+            return new BasicResponse("error","이메일 형식이 잘못되었습니다.",null);
         }
-        String password = memberDto.getPassword();
-        String phoneNum = memberDto.getPhoneNum();
+        String password = signupMember.getPassword();
+        String phoneNum = signupMember.getPhoneNum();
         LocalDateTime time = LocalDateTime.now();
         Member member = memberRepository.save(Member.builder()
                 .nametagId(nametagId)
@@ -131,35 +105,21 @@ public class SignController {
                 .roles(Collections.singletonList("ROLE_WAIT"))
                 .build());
         if(member == null) {
-            result.status = "error";
-            result.message = "회원가입에 실패하였습니다.";
-            return result;
+            return new BasicResponse("error","회원가입에 실패하였습니다.",null);
         }
-        result.message = "회원가입에 성공하였습니다.";
-
-        return result;
+        return new BasicResponse("success","회원가입에 성공하였습니다.",null);
     }
 
     @ApiOperation(value = "이메일 중복 확인", notes = "중복된 이메일이 있는지 확인합니다.")
     @GetMapping(value = "/email")
     public BasicResponse checkEmail(@ApiParam(value = "이메일", required = true) @RequestParam(required = true) String email) {
-        BasicResponse result = new BasicResponse("success");
         if(!regexChecker.emailCheck(email)){
-            result.status = "error";
-            result.message = "이메일 형식이 잘못되었습니다.";
-            result.data = false;
-            return result;
+            return new BasicResponse("error","이메일 형식이 잘못되었습니다.",false);
         }
         Member member = memberRepository.findByEmail(email);
         if(member != null) {
-            result.status = "error";
-            result.message = "사용 불가능한 이메일입니다.";
-            result.data = false;
-            return result;
+            return new BasicResponse("error","사용 불가능한 이메일입니다.",false);
         }
-        result.message = "사용 가능한 이메일입니다.";
-        result.data = true;
-
-        return result;
+        return new BasicResponse("success","사용 가능한 이메일입니다.",true);
     }
 }
