@@ -8,13 +8,12 @@
 
 ## 👯‍️About SOLAFY TEAM
 
-|   Name   | 윤기현                                                       | 이아영                                                       | 박상우                                                       | 이주희                                                       | 노천명                                                       |
-| :------: | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| Profile  | <img src="https://user-images.githubusercontent.com/70404643/106379731-5c324a80-63f1-11eb-8bfa-01db798ea00a.jpg" alt="KakaoTalk_20210123_153318915" style="zoom:80%;" /> | <img src="https://user-images.githubusercontent.com/70404643/105169123-6a18dd80-5b5e-11eb-9e91-41fe504efa9c.jpg" alt="KakaoTalk_20210120_201542573" style="zoom:80%;" /> | ![KakaoTalk_20210131_184317099](https://user-images.githubusercontent.com/70404643/106380337-f647c200-63f4-11eb-88b0-db5d4b8424bb.jpg) | <img src="https://user-images.githubusercontent.com/70404643/106379668-db734e80-63f0-11eb-9fbc-638de8ae9461.jpg" alt="KakaoTalk_20210123_122038743" style="zoom:80%;" /> | <img src="https://user-images.githubusercontent.com/70404643/106379734-65bbb280-63f1-11eb-86b7-35a10f7c4036.jpg" alt="KakaoTalk_20210131_181642502" style="zoom:80%;" /> |
-| Position | Chef                                                         | Acrobat                                                      | Captain                                                      | Chief mate                                                   | Shipbuilder                                                  |
-|   Git    | [@KihyeonYun](https://github.com/KiHyeonYun)                 | [@LeeA0](https://github.com/LeeA0)                           | [@upswp](https://github.com/upswp)                           | [@juhee](Stephen)                                            | [@shcjsaud3613](https://github.com/shcjsaud3613)             |
-|   Blog   | [Dev Yun](https://dev-yun.tistory.com/)                      | [LeeA0의 공부 일기](https://leea-dev.tistory.com/)           | [HeySangwoo](https://upswp.github.io/)                       | [devG](https://developer-g.tistory.com/)                     | [HeyGP](https://blog.naver.com/shcjsaud3613)                 |
-| NickName | **Bentley**                                                  | **Lani**                                                     | **Evan**                                                     | **G**                                                        | **GP**                                                       |
+|   Name   | 박상우                                                       | 노천명                                                       |
+| :------: | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| Profile  | ![KakaoTalk_20210131_184317099](https://user-images.githubusercontent.com/70404643/106380337-f647c200-63f4-11eb-88b0-db5d4b8424bb.jpg) | <img src="https://user-images.githubusercontent.com/70404643/106379734-65bbb280-63f1-11eb-86b7-35a10f7c4036.jpg" alt="KakaoTalk_20210131_181642502" style="zoom:80%;" /> |
+|   Git    | [@upswp](https://github.com/upswp)                           | [@shcjsaud3613](https://github.com/shcjsaud3613)             |
+|   Blog   | [HeySangwoo](https://upsw-p.tistory.com/)                    | [HeyGP](https://blog.naver.com/shcjsaud3613)                 |
+| NickName | **Evan**                                                     | **GP**                                                       |
 
 ### Team Communication Rule ✨
 
@@ -77,13 +76,13 @@
 
 ---
 
-## 📜 SOLAFY ProgressStatus
+## 📜 PLOVER ProgressStatus
 
-| 구분                     | 이름          | 링크                                                         |
-| ------------------------ | ------------- | ------------------------------------------------------------ |
-| **[문서]** 이슈관리      | Jira Software | [SOLAFY_Jira](https://solafy-ssafy.atlassian.net/secure/BrowseProjects.jspa) |
-| **[설계]** 와이어프레임  | Figma         | [SOLAFY_figma](https://www.figma.com/file/lRb9GPxT7EVxigi8mR14za/SOLAFY) |
-| **[설계]** REST API 문서 | Gitbook       | [SOLAFY_gitbook](https://app.gitbook.com/@solafymaster/spaces) |
-| **[BE]** REST API        | swagger       | [SOLAFY_swagger](https://dev.solafy.kr/solafy/swagger-ui.html#/) |
-| **[설계]** 문서정리      | Confluence    | [SOLAFY_docs](https://solafy-ssafy.atlassian.net/wiki/home)  |
-| **[문서]** 자료정리      | Google drive  | [SOLAFY_box](https://drive.google.com/drive/folders/14RGnhdylCWOxAc0aIBzyZqxKKoA2s59m?usp=sharing) |
+| 구분                    | 이름          | 링크                                                         |
+| ----------------------- | ------------- | ------------------------------------------------------------ |
+| **[문서]** 이슈관리     | Jira Software | [SOLAFY_Jira](https://solafy-ssafy.atlassian.net/secure/BrowseProjects.jspa) |
+| **[설계]** 와이어프레임 | Figma         | [SOLAFY_figma](https://www.figma.com/file/lRb9GPxT7EVxigi8mR14za/SOLAFY) |
+| **[설계]** RestAPI      | Swagger       | [SOLAFY_swagger]                                             |
+| **[설계]** 문서정리     | Confluence    | [SOLAFY_docs](https://solafy-ssafy.atlassian.net/wiki/home)  |
+| **[문서]** 자료정리     | Google drive  | [SOLAFY_box](https://drive.google.com/drive/folders/14RGnhdylCWOxAc0aIBzyZqxKKoA2s59m?usp=sharing) |
+
