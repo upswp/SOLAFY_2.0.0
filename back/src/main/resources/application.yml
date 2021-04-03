@@ -4,15 +4,15 @@ server:
 spring:
   datasource:
 #    AWS setting:
-    driver-class-name: org.mariadb.jdbc.Driver
-    url: jdbc:mariadb://solafydb.cr7qoevh9p3x.ap-northeast-2.rds.amazonaws.com/solafy?characterEncoding=UTF-8&serverTimezone=Asia/Seoul
-    username: root
-    password: solafy1005!
+#    driver-class-name: org.mariadb.jdbc.Driver
+#    url: jdbc:mariadb://solafydb.cr7qoevh9p3x.ap-northeast-2.rds.amazonaws.com/solafy?characterEncoding=UTF-8&serverTimezone=Asia/Seoul
+#    username: root
+#    password: solafy1005!
 #    local setting:
-#    driver-class-name: com.mysql.cj.jdbc.Driver
-#    url: jdbc:mysql://localhost:3306/solafy?serverTimezone=UTC&characterEncoding=UTF-8&serverTimezone=Asia/Seoul
-#    username: ssafy4
-#    password: ssafy4
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/solafy-back?serverTimezone=UTC&characterEncoding=UTF-8&serverTimezone=Asia/Seoul
+    username: ssafy4
+    password: ssafy4
 
   jpa:
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect

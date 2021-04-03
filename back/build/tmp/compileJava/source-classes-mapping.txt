@@ -1,43 +1,43 @@
-com/solafy/service/RegexChecker.java
- com.solafy.service.RegexChecker
-com/solafy/model/member/SignupMember.java
- com.solafy.model.member.SignupMember
+com/solafy/domain/member/dto/MemberDto.java
+ com.solafy.domain.member.dto.MemberDto
+com/solafy/global/common/response/BasicResponse.java
+ com.solafy.global.common.response.BasicResponse
+com/solafy/domain/member/api/SignController.java
+ com.solafy.domain.member.api.SignController
+com/solafy/infra/sms/dto/MailDto.java
+ com.solafy.infra.sms.dto.MailDto
+com/solafy/domain/member/dto/SignUpMember.java
+ com.solafy.domain.member.dto.SignUpMember
+com/solafy/global/config/EmailConfig.java
+ com.solafy.global.config.EmailConfig
+com/solafy/domain/member/entity/Member.java
+ com.solafy.domain.member.entity.Member
+ com.solafy.domain.member.entity.Member$MemberBuilder
+com/solafy/global/config/JwtTokenProvider.java
+ com.solafy.global.config.JwtTokenProvider
+com/solafy/domain/member/dao/MemberRepository.java
+ com.solafy.domain.member.dao.MemberRepository
+com/solafy/domain/member/application/SortService.java
+ com.solafy.domain.member.application.SortService
+com/solafy/global/config/JwtAuthenticationFilter.java
+ com.solafy.global.config.JwtAuthenticationFilter
+com/solafy/domain/member/application/CustomUserDetailsService.java
+ com.solafy.domain.member.application.CustomUserDetailsService
+com/solafy/global/config/SecurityConfiguration.java
+ com.solafy.global.config.SecurityConfiguration
+com/solafy/domain/member/application/RegexChecker.java
+ com.solafy.domain.member.application.RegexChecker
+com/solafy/domain/member/api/MemberController.java
+ com.solafy.domain.member.api.MemberController
+com/solafy/domain/member/dto/FindPasswordDto.java
+ com.solafy.domain.member.dto.FindPasswordDto
+com/solafy/infra/sms/MailHandler.java
+ com.solafy.infra.sms.MailHandler
 com/solafy/Application.java
  com.solafy.Application
-com/solafy/util/MailHandler.java
- com.solafy.util.MailHandler
-com/solafy/entity/Member.java
- com.solafy.entity.Member
- com.solafy.entity.Member$MemberBuilder
-com/solafy/config/JwtAuthenticationFilter.java
- com.solafy.config.JwtAuthenticationFilter
-com/solafy/model/member/MemberDto.java
- com.solafy.model.member.MemberDto
-com/solafy/repo/MemberRepository.java
- com.solafy.repo.MemberRepository
-com/solafy/config/SwaggerConfiguration.java
- com.solafy.config.SwaggerConfiguration
-com/solafy/controller/SignController.java
- com.solafy.controller.SignController
-com/solafy/config/JwtTokenProvider.java
- com.solafy.config.JwtTokenProvider
-com/solafy/config/EmailConfig.java
- com.solafy.config.EmailConfig
-com/solafy/service/CustomUserDetailsService.java
- com.solafy.service.CustomUserDetailsService
-com/solafy/model/member/LoginMember.java
- com.solafy.model.member.LoginMember
-com/solafy/service/SortService.java
- com.solafy.service.SortService
-com/solafy/model/BasicResponse.java
- com.solafy.model.BasicResponse
-com/solafy/model/member/FindPasswordDto.java
- com.solafy.model.member.FindPasswordDto
-com/solafy/controller/MemberController.java
- com.solafy.controller.MemberController
-com/solafy/service/EmailService.java
- com.solafy.service.EmailService
-com/solafy/model/MailDto.java
- com.solafy.model.MailDto
-com/solafy/config/SecurityConfiguration.java
- com.solafy.config.SecurityConfiguration
+com/solafy/domain/member/dto/LoginMember.java
+ com.solafy.domain.member.dto.LoginMember
+com/solafy/domain/member/application/EmailService.java
+ com.solafy.domain.member.application.EmailService
+com/solafy/global/config/SwaggerConfiguration.java
+ com.solafy.global.config.SwaggerConfiguration
