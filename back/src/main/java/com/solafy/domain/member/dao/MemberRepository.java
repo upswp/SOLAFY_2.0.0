@@ -11,6 +11,8 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
     void deleteByMemberNo(Long memberNo);
     Member findByEmail(String email);
 
+    boolean existsByEmail(String email); // 해당 이메일이 등록되었는지 확인
+
     List<Member> findByNameContainingIgnoreCase(String name, Pageable pageable); // name = %이름%
     List<Member> findByEmailContainingIgnoreCase(String email, Pageable pageable); // email = %이메일%
     List<Member> findBySsafy(Long ssafy, Pageable pageable); // ssafy = 기수
