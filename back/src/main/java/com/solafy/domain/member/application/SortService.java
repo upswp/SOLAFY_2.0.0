@@ -2,6 +2,7 @@ package com.solafy.domain.member.application;
 
 import com.solafy.domain.member.dao.MemberRepository;
 import com.solafy.domain.member.dto.MemberDto;
+import com.solafy.domain.member.dto.MemberResponse;
 import com.solafy.domain.member.entity.Member;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -19,12 +20,23 @@ public class SortService {
     private MemberRepository memberRepository;
 
     // Member 리스트를 MemberDto 리스트로 전환 (password token을 감추기 위함)
-    public List<MemberDto> convertMemberToDto(List<Member> list){
+//    public List<MemberDto> convertMemberToDto(List<Member> list){
+//
+//        List<MemberDto> newList = new ArrayList<>();
+//        for(int i = 0; i < list.size(); i++){
+//            MemberDto memberDto = new MemberDto(list.get(i));
+//            newList.add(memberDto);
+//        }
+//        return newList;
+//    }
 
-        List<MemberDto> newList = new ArrayList<>();
+    // Member 리스트를 MemberResponse 리스트로 전환 (password token을 감추기 위함)
+    public List<MemberResponse> convertMemberToDto(List<Member> list){
+
+        List<MemberResponse> newList = new ArrayList<>();
         for(int i = 0; i < list.size(); i++){
-            MemberDto memberDto = new MemberDto(list.get(i));
-            newList.add(memberDto);
+            MemberResponse dto = new MemberResponse(list.get(i));
+            newList.add(dto);
         }
         return newList;
     }

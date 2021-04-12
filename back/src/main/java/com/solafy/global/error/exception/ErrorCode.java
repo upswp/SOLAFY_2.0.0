@@ -19,6 +19,7 @@ public enum ErrorCode {
     SIGNUP_INPUT_INVALID(400, "M002", "SignUp input is invalid"),
     LOGIN_INPUT_INVALID(400, "M003", "Login input is invalid"),
     FAILED_COUNT_OVER(400,"M004","Failed count is over"),
+    ROLE_WRONG(400,"M005","Role is Wrong"),
 
     // Coupon
     COUPON_ALREADY_USE(400, "CO001", "Coupon was already used"),
