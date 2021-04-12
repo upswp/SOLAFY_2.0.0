@@ -2,42 +2,69 @@ com/solafy/domain/member/dto/MemberDto.java
  com.solafy.domain.member.dto.MemberDto
 com/solafy/global/common/response/BasicResponse.java
  com.solafy.global.common.response.BasicResponse
-com/solafy/domain/member/api/SignController.java
- com.solafy.domain.member.api.SignController
+com/solafy/global/config/SwaggerConfiguration.java
+ com.solafy.global.config.SwaggerConfiguration
 com/solafy/infra/sms/dto/MailDto.java
  com.solafy.infra.sms.dto.MailDto
 com/solafy/domain/member/dto/SignUpMember.java
  com.solafy.domain.member.dto.SignUpMember
-com/solafy/global/config/EmailConfig.java
- com.solafy.global.config.EmailConfig
+com/solafy/domain/member/application/EmailService.java
+ com.solafy.domain.member.application.EmailService
 com/solafy/domain/member/entity/Member.java
  com.solafy.domain.member.entity.Member
  com.solafy.domain.member.entity.Member$MemberBuilder
 com/solafy/global/config/JwtTokenProvider.java
  com.solafy.global.config.JwtTokenProvider
+com/solafy/domain/member/dto/LoginMember.java
+ com.solafy.domain.member.dto.LoginMember
+com/solafy/Application.java
+ com.solafy.Application
+com/solafy/global/config/JwtAuthenticationFilter.java
+ com.solafy.global.config.JwtAuthenticationFilter
+com/solafy/infra/sms/MailHandler.java
+ com.solafy.infra.sms.MailHandler
+com/solafy/domain/member/dto/MemberResponse.java
+ com.solafy.domain.member.dto.MemberResponse
+com/solafy/domain/member/application/RegexChecker.java
+ com.solafy.domain.member.application.RegexChecker
+com/solafy/domain/member/dto/FindPasswordDto.java
+ com.solafy.domain.member.dto.FindPasswordDto
+com/solafy/domain/member/application/MemberSignUpService.java
+ com.solafy.domain.member.application.MemberSignUpService
+com/solafy/domain/member/dto/MemberExistenceType.java
+ com.solafy.domain.member.dto.MemberExistenceType
+com/solafy/global/error/exception/ErrorCode.java
+ com.solafy.global.error.exception.ErrorCode
+com/solafy/global/common/response/Existence.java
+ com.solafy.global.common.response.Existence
+com/solafy/global/config/EmailConfig.java
+ com.solafy.global.config.EmailConfig
+com/solafy/domain/member/api/MemberApi.java
+ com.solafy.domain.member.api.MemberApi
 com/solafy/domain/member/dao/MemberRepository.java
  com.solafy.domain.member.dao.MemberRepository
 com/solafy/domain/member/application/SortService.java
  com.solafy.domain.member.application.SortService
-com/solafy/global/config/JwtAuthenticationFilter.java
- com.solafy.global.config.JwtAuthenticationFilter
 com/solafy/domain/member/application/CustomUserDetailsService.java
  com.solafy.domain.member.application.CustomUserDetailsService
-com/solafy/global/config/SecurityConfiguration.java
- com.solafy.global.config.SecurityConfiguration
-com/solafy/domain/member/application/RegexChecker.java
- com.solafy.domain.member.application.RegexChecker
+com/solafy/global/error/exception/InvalidValueException.java
+ com.solafy.global.error.exception.InvalidValueException
 com/solafy/domain/member/api/MemberController.java
  com.solafy.domain.member.api.MemberController
-com/solafy/domain/member/dto/FindPasswordDto.java
- com.solafy.domain.member.dto.FindPasswordDto
-com/solafy/infra/sms/MailHandler.java
- com.solafy.infra.sms.MailHandler
-com/solafy/Application.java
- com.solafy.Application
-com/solafy/domain/member/dto/LoginMember.java
- com.solafy.domain.member.dto.LoginMember
-com/solafy/domain/member/application/EmailService.java
- com.solafy.domain.member.application.EmailService
-com/solafy/global/config/SwaggerConfiguration.java
- com.solafy.global.config.SwaggerConfiguration
+com/solafy/domain/member/application/MemberSearchService.java
+ com.solafy.domain.member.application.MemberSearchService
+ com.solafy.domain.member.application.MemberSearchService$1
+com/solafy/domain/member/api/SignController.java
+ com.solafy.domain.member.api.SignController
+com/solafy/domain/member/dto/SignUpRequest.java
+ com.solafy.domain.member.dto.SignUpRequest
+com/solafy/global/error/exception/BusinessException.java
+ com.solafy.global.error.exception.BusinessException
+com/solafy/domain/member/exception/EmailInvalidValueException.java
+ com.solafy.domain.member.exception.EmailInvalidValueException
+com/solafy/domain/member/exception/EmailDuplicateException.java
+ com.solafy.domain.member.exception.EmailDuplicateException
+com/solafy/domain/member/api/SignUpApi.java
+ com.solafy.domain.member.api.SignUpApi
+com/solafy/global/config/SecurityConfiguration.java
+ com.solafy.global.config.SecurityConfiguration

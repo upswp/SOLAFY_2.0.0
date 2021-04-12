@@ -13,6 +13,7 @@ import org.springframework.web.filter.CharacterEncodingFilter;
 import java.nio.charset.Charset;
 import java.util.logging.Filter;
 
+// http://localhost:8080/solafy/swagger-ui.html#/
 @SpringBootApplication
 public class Application {
     public static void main(String[] args) {

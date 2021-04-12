@@ -12,19 +12,17 @@ import java.time.LocalDateTime;
 @ToString
 public class MemberResponse {
 
-    private long memberNo;
+    private Long memberNo;
 
-    private long nametagId;
+    private Long nametagId;
 
-    private long profileId;
+    private Long profileId;
 
     private String name;
 
-    private long ssafy;
+    private Long ssafy;
 
     private String email;
-
-    private String password;
 
     private String phoneNum;
 
@@ -36,8 +34,12 @@ public class MemberResponse {
 
     public MemberResponse(Member member){
         this.memberNo = member.getMemberNo();
-        this.nametagId = member.getNametagId();
-        this.profileId = member.getProfileId();
+        if(member.getNametagId() != null){
+            this.nametagId = member.getNametagId();
+        }
+        if(member.getProfileId() != null){
+            this.profileId = member.getProfileId();
+        }
         this.name = member.getName();
         this.ssafy = member.getSsafy();
         this.email = member.getEmail();

@@ -220,7 +220,7 @@ public class MemberController {
     @ApiOperation(value = "이메일 발송 ", notes = "이메일을 발송한다")
     @GetMapping(value = "/emailsend")
     public BasicResponse updateRole(@ApiParam(value = "이메일", required = true) @RequestParam String email) {
-        Member member = memberRepository.findByEmail(email);
+        Member member = memberRepository.findByEmail(email).get();
         if(member == null){
             return new BasicResponse("error","가입되지 않은 이메일입니다.",null);
         }
