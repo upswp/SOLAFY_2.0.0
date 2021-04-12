@@ -1,12 +1,11 @@
 package com.solafy.domain.member.api;
 
-import com.solafy.domain.member.application.MemberSearchService;
-import com.solafy.domain.member.application.MemberSignUpService;
-import com.solafy.domain.member.application.RegexChecker;
+import com.solafy.domain.member.application.*;
 import com.solafy.domain.member.dao.MemberRepository;
 import com.solafy.domain.member.dto.*;
 import com.solafy.domain.member.entity.Member;
 import com.solafy.global.common.response.Existence;
+import com.solafy.global.common.response.Token;
 import com.solafy.global.config.JwtTokenProvider;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -25,17 +24,22 @@ import java.util.Collections;
 @RequiredArgsConstructor
 public class SignUpApi {
 
-    @Autowired
-    private final MemberRepository memberRepository;
-    @Autowired
-    private final JwtTokenProvider jwtTokenProvider;
-    @Autowired
-    private final PasswordEncoder passwordEncoder;
-    @Autowired
-    private final RegexChecker regexChecker;
-
+    private final MemberLoginService memberLoginService;
     private final MemberSignUpService memberSignUpService;
     private final MemberSearchService memberSearchService;
+    private final MemberFindPasswordService memberFindPasswordService;
+
+    @ApiOperation(value = "로그인", notes = "이메일 회원 로그인을 한다.")
+    @PostMapping(value = "/login")
+    public Token loginMember(@RequestBody LoginMember dto) {
+        return new Token(memberLoginService.doLogin(dto));
+    }
+
+    @ApiOperation(value = "비밀번호 변경 요청", notes = "비밀번호 변경 요청을 한다.")
+    @PostMapping(value = "/password")
+    public Existence findPassword(@RequestBody final FindPasswordDto dto) {
+        return new Existence(memberFindPasswordService.findPassword(dto));
+    }
 
     @ApiOperation(value = "가입", notes = "회원가입을 한다.")
     @PostMapping(value = "/signup")

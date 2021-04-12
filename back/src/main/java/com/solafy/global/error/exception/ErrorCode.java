@@ -18,6 +18,7 @@ public enum ErrorCode {
     EMAIL_DUPLICATION(400, "M001", "Email is Duplication"),
     SIGNUP_INPUT_INVALID(400, "M002", "SignUp input is invalid"),
     LOGIN_INPUT_INVALID(400, "M003", "Login input is invalid"),
+    FAILED_COUNT_OVER(400,"M004","Failed count is over"),
 
     // Coupon
     COUPON_ALREADY_USE(400, "CO001", "Coupon was already used"),

@@ -8,6 +8,7 @@ import java.util.Collections;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PACKAGE)
+@AllArgsConstructor
 public class SignUpRequest {
 
     private Long nametagId;
@@ -23,16 +24,6 @@ public class SignUpRequest {
     private String password;
 
     private String phoneNum;
-
-    SignUpRequest(Long nametagId, Long profileId, String name, Long ssafy, String email, String password, String phoneNum){
-        this.nametagId = nametagId;
-        this.profileId = profileId;
-        this.name = name;
-        this.ssafy = ssafy;
-        this.email = email;
-        this.password = password;
-        this.phoneNum = phoneNum;
-    }
 
     public Member toEntity(String encodePassword, LocalDateTime nowTime){
         return Member.builder()

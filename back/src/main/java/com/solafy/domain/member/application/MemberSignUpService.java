@@ -23,12 +23,14 @@ public class MemberSignUpService {
 
     public Member doSignUp(final SignUpRequest dto) {
 
-        if(!regexChecker.emailCheck(dto.getEmail())){
-            throw new EmailInvalidValueException(dto.getEmail());
+        final String email = dto.getEmail();
+
+        if(!regexChecker.emailCheck(email)){
+            throw new EmailInvalidValueException(email);
         }
 
-        if (memberRepository.existsByEmail(dto.getEmail())) {
-            throw new EmailDuplicateException(dto.getEmail());
+        if (memberRepository.existsByEmail(email)) {
+            throw new EmailDuplicateException(email);
         }
 
         final String encodePassword = passwordEncoder.encode(dto.getPassword());
