@@ -12,15 +12,15 @@ import java.time.LocalDateTime;
 @ToString
 public class MemberDto {
 
-    private long memberNo;
+    private Long memberNo;
 
-    private long nametagId;
+    private Long nametagId;
 
-    private long profileId;
+    private Long profileId;
 
     private String name;
 
-    private long ssafy;
+    private Long ssafy;
 
     private String email;
 

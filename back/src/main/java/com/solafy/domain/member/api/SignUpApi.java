@@ -1,22 +1,14 @@
 package com.solafy.domain.member.api;
 
 import com.solafy.domain.member.application.*;
-import com.solafy.domain.member.dao.MemberRepository;
 import com.solafy.domain.member.dto.*;
 import com.solafy.domain.member.entity.Member;
 import com.solafy.global.common.response.Existence;
 import com.solafy.global.common.response.Token;
-import com.solafy.global.config.JwtTokenProvider;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
-
-import java.time.LocalDateTime;
-import java.util.Collections;
 
 @Api(tags = {"1. Sign"})
 @RestController
@@ -26,18 +18,18 @@ public class SignUpApi {
 
     private final MemberLoginService memberLoginService;
     private final MemberSignUpService memberSignUpService;
-    private final MemberSearchService memberSearchService;
+    private final MemberExistenceService memberExistenceService;
     private final MemberFindPasswordService memberFindPasswordService;
 
     @ApiOperation(value = "로그인", notes = "이메일 회원 로그인을 한다.")
     @PostMapping(value = "/login")
-    public Token loginMember(@RequestBody LoginMember dto) {
+    public Token loginMember(@RequestBody LoginRequest dto) {
         return new Token(memberLoginService.doLogin(dto));
     }
 
     @ApiOperation(value = "비밀번호 변경 요청", notes = "비밀번호 변경 요청을 한다.")
     @PostMapping(value = "/password")
-    public Existence findPassword(@RequestBody final FindPasswordDto dto) {
+    public Existence findPassword(@RequestBody final FindPasswordRequest dto) {
         return new Existence(memberFindPasswordService.findPassword(dto));
     }
 
@@ -52,6 +44,6 @@ public class SignUpApi {
     @GetMapping(value = "/existence")
     public Existence isExistTarget(@RequestParam("type") final MemberExistenceType type,
                                    @RequestParam(value = "value", required = false) final String value){
-        return new Existence(memberSearchService.isExistTarget(type, value));
+        return new Existence(memberExistenceService.isExistTarget(type, value));
     }
 }

@@ -1,9 +1,8 @@
 package com.solafy.domain.member.application;
 
 import com.solafy.domain.member.dao.MemberFindDao;
-import com.solafy.domain.member.dto.LoginMember;
+import com.solafy.domain.member.dto.LoginRequest;
 import com.solafy.domain.member.entity.Member;
-import com.solafy.domain.member.exception.EmailInvalidValueException;
 import com.solafy.domain.member.exception.LoginInputInvalidException;
 import com.solafy.global.config.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
@@ -19,20 +18,11 @@ public class MemberLoginService {
     private final MemberFindDao memberFindDao;
     private final JwtTokenProvider jwtTokenProvider;
     private final PasswordEncoder passwordEncoder;
-    private final RegexChecker regexChecker;
 
-    public String doLogin(LoginMember dto){
+    public String doLogin(final LoginRequest dto){
+        final Member member = memberFindDao.findByEmail(dto.getEmail());
 
-        final String email = dto.getEmail();
-        final String password = dto.getPassword();
-
-        if(!regexChecker.emailCheck(email)){
-            throw new EmailInvalidValueException(email);
-        }
-
-        final Member member = memberFindDao.findByEmail(email);
-
-        if (!passwordEncoder.matches(password, member.getPassword())) {
+        if (!passwordEncoder.matches(dto.getPassword(), member.getPassword())) {
             throw new LoginInputInvalidException();
         }
 

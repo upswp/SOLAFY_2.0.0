@@ -7,9 +7,13 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class FindPasswordDto {
-    private int count; // 비밀번호 틀린 횟수
+public class FindPasswordRequest {
+
     private String name;
-    private long ssafy;
+
+    private Long ssafy;
+
     private String email;
+
+    private int count; // 비밀번호 틀린 횟수
 }

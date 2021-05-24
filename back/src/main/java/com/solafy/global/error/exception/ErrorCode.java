@@ -21,14 +21,11 @@ public enum ErrorCode {
     FAILED_COUNT_OVER(400,"M004","Failed count is over"),
     ROLE_WRONG(400,"M005","Role is Wrong"),
 
-    // Coupon
-    COUPON_ALREADY_USE(400, "CO001", "Coupon was already used"),
-    COUPON_EXPIRE(400, "CO002", "Coupon was already expired")
-
     ;
-    private final String code;
-    private final String message;
+
     private int status;
+    private final String message;
+    private final String code;
 
     ErrorCode(final int status, final String code, final String message) {
         this.status = status;

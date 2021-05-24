@@ -7,7 +7,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class MemberProfileUpdate {
+public class MemberUpdateRequest {
 
     private Long nametagId;
 

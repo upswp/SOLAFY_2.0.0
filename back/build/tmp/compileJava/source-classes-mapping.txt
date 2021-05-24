@@ -42,8 +42,8 @@ com/solafy/domain/member/exception/EmailNotFoundException.java
  com.solafy.domain.member.exception.EmailNotFoundException
 com/solafy/global/error/exception/ErrorCode.java
  com.solafy.global.error.exception.ErrorCode
-com/solafy/domain/member/exception/MemberNotFoundException.java
- com.solafy.domain.member.exception.MemberNotFoundException
+com/solafy/domain/member/dto/MemberResponse.java
+ com.solafy.domain.member.dto.MemberResponse
 com/solafy/global/error/exception/InvalidValueException.java
  com.solafy.global.error.exception.InvalidValueException
 com/solafy/domain/member/api/SignController.java
@@ -73,8 +73,8 @@ com/solafy/domain/member/dao/MemberRepository.java
  com.solafy.domain.member.dao.MemberRepository
 com/solafy/domain/member/application/MemberProfileService.java
  com.solafy.domain.member.application.MemberProfileService
-com/solafy/domain/member/dao/MemberFindDao.java
- com.solafy.domain.member.dao.MemberFindDao
+com/solafy/domain/member/dto/SignUpRequest.java
+ com.solafy.domain.member.dto.SignUpRequest
 com/solafy/domain/member/application/CustomUserDetailsService.java
  com.solafy.domain.member.application.CustomUserDetailsService
 com/solafy/domain/member/application/MemberLoginService.java
@@ -86,7 +86,12 @@ com/solafy/domain/member/application/MemberSearchService.java
  com.solafy.domain.member.application.MemberSearchService$1
 com/solafy/domain/member/api/SignUpApi.java
  com.solafy.domain.member.api.SignUpApi
-com/solafy/domain/member/dto/SignUpRequest.java
- com.solafy.domain.member.dto.SignUpRequest
-com/solafy/domain/member/dto/MemberResponse.java
- com.solafy.domain.member.dto.MemberResponse
+com/solafy/global/error/ErrorResponse.java
+ com.solafy.global.error.ErrorResponse
+ com.solafy.global.error.ErrorResponse$FieldError
+com/solafy/global/error/GlobalExceptionHandler.java
+ com.solafy.global.error.GlobalExceptionHandler
+com/solafy/domain/member/exception/MemberNotFoundException.java
+ com.solafy.domain.member.exception.MemberNotFoundException
+com/solafy/domain/member/dao/MemberFindDao.java
+ com.solafy.domain.member.dao.MemberFindDao

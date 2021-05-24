@@ -1,7 +1,7 @@
 package com.solafy.domain.member.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.solafy.domain.member.dto.MemberProfileUpdate;
+import com.solafy.domain.member.dto.MemberUpdateRequest;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -110,7 +110,7 @@ public class Member implements UserDetails {
         this.roles = Collections.singletonList("ROLE_USER");
     }
 
-    public void updateProfile(final MemberProfileUpdate dto, final String encodePassword){
+    public void updateProfile(final MemberUpdateRequest dto, final String encodePassword){
         if(dto.getNametagId() != null){
             this.nametagId = dto.getNametagId();
         }

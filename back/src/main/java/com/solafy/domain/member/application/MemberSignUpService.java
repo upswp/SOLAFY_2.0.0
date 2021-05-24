@@ -22,7 +22,6 @@ public class MemberSignUpService {
     private final PasswordEncoder passwordEncoder;
 
     public Member doSignUp(final SignUpRequest dto) {
-
         final String email = dto.getEmail();
 
         if(!regexChecker.emailCheck(email)){
